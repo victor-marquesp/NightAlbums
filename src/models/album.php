@@ -19,23 +19,23 @@ class Album {
 
     }
 
-    public function getName() {
+    public function getName() : string {
         return $this->name;
     }   
 
-    public function getDesc() {
+    public function getDesc() : string {
         return $this->desc;
     }   
 
-    public function getArtist() {
+    public function getArtist() : string {
         return $this->artist;
     }   
 
-    public function getGenre() {
+    public function getGenre() : string {
         return $this->genre;
     }   
 
-    public function getDuration() {
-        return $this->name;
+    public function getDuration() : int {
+        return $this->duration;
     }   
 }

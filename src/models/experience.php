@@ -17,19 +17,19 @@ class Experience {
         $this->stars = $stars;
     }
 
-    public function getAlbum() {
+    public function getAlbum() : Album {
         return $this->album;
     }
 
-    public function getDesc() {
+    public function getDesc() : string {
         return $this->desc;
     }
 
-    public function getmood() {
+    public function getmood() : string {
         return $this->mood;
     }
 
-    public function getStars() {
+    public function getStars() : float {
         return $this->stars;
     }
 }
