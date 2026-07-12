@@ -5,6 +5,7 @@ namespace App\Models;
 use InvalidArgumentException;
 
 class Album {
+    private int $id;
     private string $name;
     private int $duration;
     private ?string $desc;
@@ -12,12 +13,14 @@ class Album {
     private ?string $genre;
 
     public function __construct(
+        int $id,
         string $name, 
         int $duration,
         ?string $desc = null, 
         ?string $artist = null, 
         ?string $genre = null) {
 
+        $this->setId($id);
         $this->setName($name);
         $this->setDesc($desc);
         $this->setArtist($artist);
@@ -29,6 +32,10 @@ class Album {
     // ===========================================================================================================
     // GETTERS E SETTERS
     // ===========================================================================================================    
+
+    private function setId(int $id) : void {
+        $this->id = $id;
+    }
 
     private function setName(string $name) {
 
@@ -74,23 +81,28 @@ class Album {
          return true;
     }
 
+    public function getId() : int {
+        return $this->id;
+    }
+
     public function getName() : string {
         return $this->name;
     }   
 
-    public function getDesc() : string {
+    public function getDuration() : int {
+        return $this->duration;
+    } 
+
+    public function getDesc() : ?string {
         return $this->desc;
     }   
 
-    public function getArtist() : string {
+    public function getArtist() : ?string {
         return $this->artist;
     }   
 
-    public function getGenre() : string {
+    public function getGenre() : ?string {
         return $this->genre;
     }   
-
-    public function getDuration() : int {
-        return $this->duration;
-    }   
+      
 }

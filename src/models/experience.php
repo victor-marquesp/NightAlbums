@@ -7,13 +7,15 @@ use App\Models\Album;
 use InvalidArgumentException;
 
 class Experience {
+    private int $id;
     private Album $album;
-    private string $desc;
     private string $mood;
     private float $stars;
+    private ?string $desc;
 
-    public function __construct(Album $album, string $desc, string $mood, float $stars) {
+    public function __construct(int $id, Album $album, string $mood, float $stars, ?string $desc = null) {
         
+        $this->setId($id);
         $this->setAlbum($album);
         $this->setDesc($desc);
         $this->setMood($mood);  
@@ -25,15 +27,15 @@ class Experience {
     // GETTERS E SETTERS
     // ===========================================================================================================  
 
-    private function setAlbum(Album $album) {
+    private function setId(int $id) : void {
+        $this->id = $id;
+    }
+
+    private function setAlbum(Album $album) : void {
         $this->album = $album;
     }
 
-    private function setDesc(string $desc) {
-        $this->desc = $desc;
-    }
-
-    private function setMood(string $mood) {
+    private function setMood(string $mood) : void {
         if(mb_strlen($mood) > 120 ) {
             throw new InvalidArgumentException("Palavra Muito Grande (Mood de Experience)");
         }
@@ -41,28 +43,36 @@ class Experience {
         $this->mood = $mood;
     }
 
-    private function setStars(float $stars) {
+    private function setStars(float $stars) : void {
         if($stars < 0 || $stars > 10) {
             throw new InvalidArgumentException("Estrelas devem estar no intervalo de 0 - 10");
         }
 
         $this->stars = $stars;
     }
-    
+
+    private function setDesc(?string $desc) : void {
+        $this->desc = $desc;
+    }
+
+    public function getId() : int {
+        return $this->id;
+    }   
+     
     public function getAlbum() : Album {
         return $this->album;
     }
 
-    public function getDesc() : string {
-        return $this->desc;
-    }
-
-    public function getmood() : string {
+    public function getMood() : string {
         return $this->mood;
     }
 
     public function getStars() : float {
         return $this->stars;
+    }
+
+    public function getDesc() : ?string {
+        return $this->desc;
     }
 }
 
