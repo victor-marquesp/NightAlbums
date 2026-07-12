@@ -2,14 +2,21 @@
 
 namespace App\Models;
 
+use InvalidArgumentException;
+
 class Album {
     private string $name;
-    private string $desc;
-    private string $artist;
-    private string $genre;
     private int $duration;
+    private ?string $desc;
+    private ?string $artist;
+    private ?string $genre;
 
-    public function __construct(string $name, string $desc, string $artist, string $genre, int $duration) {
+    public function __construct(
+        string $name, 
+        int $duration,
+        ?string $desc = null, 
+        ?string $artist = null, 
+        ?string $genre = null) {
 
         $this->setName($name);
         $this->setDesc($desc);
@@ -23,28 +30,47 @@ class Album {
     // GETTERS E SETTERS
     // ===========================================================================================================    
 
-    public function setName(string $name) : bool {
-         $this->name = $name;
-         return true;
+    private function setName(string $name) {
+
+        if(trim($name) === '') {
+            throw new InvalidArgumentException("Nome de Álbum Nulo");
+        }
+
+        if(mb_strlen($name) > 120) {
+            throw new InvalidArgumentException("Nome de Álbum Excepcionalmente Grande");
+        }
+
+        $this->name = $name;
     }
 
-    public function setDesc(string $desc) : bool {
-         $this->desc = $desc;
-         return true;
+    private function setDuration(int $duration) {
+
+        if($duration <= 0) {
+            throw new InvalidArgumentException("Duração deve ser Positiva");
+        }
+
+        $this->duration = $duration;
+        return true;
     }
 
-    public function setArtist(string $artist) : bool {
+    private function setDesc(?string $desc) {
+
+        if($desc != null && mb_strlen($desc) > 1000) {
+            throw new InvalidArgumentException("Descrição Desnecessáriamente Longa");
+        }
+
+        $this->desc = $desc;
+
+        return true;
+    }
+
+    private function setArtist(?string $artist) {
          $this->artist = $artist;
          return true;
     }
 
-    public function setGenre(string $genre) : bool {
+    private function setGenre(?string $genre) {
          $this->genre = $genre;
-         return true;
-    }
-
-    public function setDuration(int $duration) : bool {
-         $this->duration = $duration;
          return true;
     }
 

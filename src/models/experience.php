@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Models\Album;
 
+use InvalidArgumentException;
+
 class Experience {
     private Album $album;
     private string $desc;
@@ -23,24 +25,28 @@ class Experience {
     // GETTERS E SETTERS
     // ===========================================================================================================  
 
-    public function setAlbum(Album $album) : bool {
+    private function setAlbum(Album $album) {
         $this->album = $album;
-        return true;
     }
 
-    public function setDesc(string $desc) : bool {
+    private function setDesc(string $desc) {
         $this->desc = $desc;
-        return true;
     }
 
-    public function setMood(string $mood) : bool {
+    private function setMood(string $mood) {
+        if(mb_strlen($mood) > 120 ) {
+            throw new InvalidArgumentException("Palavra Muito Grande (Mood de Experience)");
+        }
+
         $this->mood = $mood;
-        return true;
     }
 
-    public function setStars(float $stars) : bool {
+    private function setStars(float $stars) {
+        if($stars < 0 || $stars > 10) {
+            throw new InvalidArgumentException("Estrelas devem estar no intervalo de 0 - 10");
+        }
+
         $this->stars = $stars;
-        return true;
     }
     
     public function getAlbum() : Album {
