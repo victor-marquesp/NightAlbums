@@ -1,0 +1,16 @@
+{
+    "name": "w4rqu/night-albums",
+    "description": "Rate your album experiences.",
+    "autoload": {
+        "psr-4": {
+            "W4rqu\\NightAlbums\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Victor Marques",
+            "email": "victor.pecine.marquesp@gmail.com"
+        }
+    ],
+    "require": {}
+}
