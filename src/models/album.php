@@ -11,12 +11,41 @@ class Album {
 
     public function __construct(string $name, string $desc, string $artist, string $genre, int $duration) {
 
-        $this->name = $name;
-        $this->desc = $desc;
-        $this->artist = $artist;
-        $this->genre = $genre;
-        $this->duration = $duration;
+        $this->setName($name);
+        $this->setDesc($desc);
+        $this->setArtist($artist);
+        $this->setGenre($genre);
+        $this->setDuration($duration);
 
+    }
+
+    // ===========================================================================================================
+    // GETTERS E SETTERS
+    // ===========================================================================================================    
+
+    public function setName(string $name) : bool {
+         $this->name = $name;
+         return true;
+    }
+
+    public function setDesc(string $desc) : bool {
+         $this->desc = $desc;
+         return true;
+    }
+
+    public function setArtist(string $artist) : bool {
+         $this->artist = $artist;
+         return true;
+    }
+
+    public function setGenre(string $genre) : bool {
+         $this->genre = $genre;
+         return true;
+    }
+
+    public function setDuration(int $duration) : bool {
+         $this->duration = $duration;
+         return true;
     }
 
     public function getName() : string {
