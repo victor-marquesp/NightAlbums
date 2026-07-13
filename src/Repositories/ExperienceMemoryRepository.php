@@ -4,10 +4,11 @@ namespace App\Repositories;
 
 use App\Models\Experience;
 use App\IDB\MemoryStorage;
+use App\Repositories\IExperienceRepository;
 
 use InvalidArgumentException;
 
-class ExperienceMemoryRepository {
+class ExperienceMemoryRepository implements IExperienceRepository {
 
     public function save(Experience $experience) : void {
 
@@ -19,13 +20,13 @@ class ExperienceMemoryRepository {
 
     }
 
-    public function fetchAll() : array {
+    public function findAll() : array {
 
         return MemoryStorage::$experiences;
 
     }
 
-    public function fetchById(int $id) : Experience {
+    public function findById(int $id) : Experience {
 
         if(!$this->exists($id)) {
             throw new InvalidArgumentException('ID de Experiência não encontrado');

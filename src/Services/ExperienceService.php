@@ -5,14 +5,14 @@ namespace App\Services;
 use App\Models\Experience;
 use App\Models\Album;
 use App\DTO\NewExperienceData;
-use App\Repositories\ExperienceMemoryRepository;
-use App\Repositories\AlbumMemoryRepository;
+use App\Repositories\IExperienceRepository;
+use App\Repositories\IAlbumRepository;
 
 class ExperienceService {
 
     public function __construct(
-        private ExperienceMemoryRepository $experienceRep, 
-        private AlbumMemoryRepository $albumRep
+        private IExperienceRepository $experienceRep, 
+        private IAlbumRepository $albumRep
     ) {}
 
     public function create(NewExperienceData $data) : void {
@@ -35,12 +35,12 @@ class ExperienceService {
         $this->experienceRep->save($experience);
     }
 
-    public function findAll(): array {
-        return $this->experienceRep->fetchAll();
+    public function listAll(): array {
+        return $this->experienceRep->findAll();
     }   
 
-    public function findById(int $id) : Experience {
-        return $this->experienceRep->fetchById($id);
+    public function listById(int $id) : Experience {
+        return $this->experienceRep->findById($id);
     }
 
     public function edit(Experience $experience) {
@@ -55,6 +55,6 @@ class ExperienceService {
     }
 
     private function validateAlbum(Album $album) {
-        $this->albumRep->fetchById($album->getId());
+        $this->albumRep->findById($album->getId());
     }
 }
