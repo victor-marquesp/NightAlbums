@@ -7,8 +7,11 @@ use App\Data\Repositories\ExperienceMemoryRepository;
 use App\Data\Repositories\AlbumMemoryRepository;
 
 use App\Domain\Services\ExperienceService;
+use App\Domain\Services\AlbumService;
 
 use App\Presentation\Controllers\ExperienceController;
+use App\Presentation\Controllers\AlbumController;
+
 use App\Presentation\CLI\Menu;
 
 class Application {
@@ -31,9 +34,15 @@ class Application {
             experienceRep: $experienceRepository,
             albumRep: $albumRepository
         );
+        $albumService = new AlbumService($albumRepository);
 
         $experienceController = new ExperienceController($experienceService);
-        $this->menu = new Menu($experienceController);
+        $albumController = new AlbumController($albumService);
+
+        $this->menu = new Menu(
+            expControll: $experienceController,
+            albumControll: $albumController
+        );
     }
 
 }

@@ -8,26 +8,29 @@ use App\Domain\Models\Experience;
 
 use App\Presentation\CLI\Output;
 
+use App\Presentation\Views\ExperienceListView;
+
 use InvalidArgumentException;
 
 class ExperienceController {
 
     public function __construct(private ExperienceService $expService) {}
 
-    public function create(NewExperienceData $expData) : void {
+    public function create(NewExperienceData $expData) {
         try {
             $this->expService->create($expData);
+            Output::sucess('Experiência criada com sucesso');
         } catch(InvalidArgumentException $e) {
             Output::error($e->get_message);
             Output::pause();
         }  
     }
 
-    public function listAll() : array {
-        return $this->expService->listAll();
+    public function listAll() {
+        ExperienceListView::show($this->expService->listAll());
     }
 
-    public function listById(int $id) : Experience {
+    public function listById(int $id) {
         try {
             return $this->expService->listById($id);
         } catch (InvalidArgumentException $e) {
@@ -36,9 +39,10 @@ class ExperienceController {
         }
     }
 
-    public function edit(Experience $experience) : void {
+    public function edit(Experience $experience) {
         try {
             $this->expService->edit($experience);
+            Output::sucess('Experiência editada com sucesso');
         } catch(InvalidArgumentException $e) {
             Output::error($e->get_message);
             Output::pause();
@@ -48,6 +52,7 @@ class ExperienceController {
     public function delete(int $id) : void {
         try {
             $this->expService->delete($id);
+            Output::sucess('Experiência deletada com sucesso');
         } catch (InvalidArgumentException $e) {
             Output::error($e->get_message);
             Output::pause();
