@@ -3,10 +3,10 @@
 namespace App\Repositories;
 
 require 'src/models/experience.php';
-require 'src/idb/data.php';
+require 'src/idb/memory_storage.php';
 
 use App\Models\Experience;
-use App\IDB\Data;
+use App\IDB\MemoryStorage;
 
 use InvalidArgumentException;
 
@@ -18,13 +18,13 @@ class ExperienceMemoryRepository {
             throw new InvalidArgumentException('ID de Experiência já existente');
         }
 
-        Data::$experiences[$experience->getId()] = $experience;
+        MemoryStorage::$experiences[$experience->getId()] = $experience;
 
     }
 
     public function fetchAll() : array {
 
-        return Data::$experiences;
+        return MemoryStorage::$experiences;
 
     }
 
@@ -34,7 +34,7 @@ class ExperienceMemoryRepository {
             throw new InvalidArgumentException('ID de Experiência não encontrado');
         }
             
-        return Data::$experiences[$id];
+        return MemoryStorage::$experiences[$id];
     }
 
     public function update(Experience $experience) : void {
@@ -43,7 +43,7 @@ class ExperienceMemoryRepository {
             throw new InvalidArgumentException('ID de Experiência não encontrado');
         }
 
-        Data::$experiences[$experience->getId()] = $experience;
+        MemoryStorage::$experiences[$experience->getId()] = $experience;
 
     }
 
@@ -53,19 +53,19 @@ class ExperienceMemoryRepository {
             throw new InvalidArgumentException('ID de Experiência não encontrado');
         }
 
-        unset(Data::$experiences[$id]);
+        unset(MemoryStorage::$experiences[$id]);
 
     }
     
     private function exists(int $id) : bool {    
 
-        return isset(Data::$experiences[$id]);
+        return isset(MemoryStorage::$experiences[$id]);
 
     }
         
     public function generateId() : int {
 
-        return Data::nextExperienceId();
+        return MemoryStorage::nextExperienceId();
 
     }
 }

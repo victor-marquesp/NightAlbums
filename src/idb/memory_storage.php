@@ -2,7 +2,7 @@
 
 namespace App\IDB;
 
-abstract class Data {
+abstract class MemoryStorage {
 
     static private int $experienceId = 0;
 
@@ -17,11 +17,11 @@ abstract class Data {
     ];
 
     static public function nextExperienceId() : int {
-        return Data::$experienceId++;
+        return MemoryStorage::$experienceId++;
     }
 
     static public function nexAlbumId() : int {
-        return Data::$albumId++;
+        return MemoryStorage::$albumId++;
     }
 }
 

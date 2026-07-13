@@ -3,17 +3,17 @@
 namespace App\Repositories;
 
 require 'src/models/album.php';
-// require 'src/idb/data.php';
+// require 'src/idb/memory_storage.php';
 
 use App\Models\Album;
-use App\IDB\Data;
+use App\IDB\MemoryStorage;
 
 use InvalidArgumentException;
 
 class AlbumMemoryRepository {
     
     public function fetchAll() : array {
-        return Data::$albuns;
+        return MemoryStorage::$albuns;
     }
 
     public function fetchById(int $id) : Album {
@@ -21,10 +21,10 @@ class AlbumMemoryRepository {
             throw new InvalidArgumentException('ID de Álbum não encontrado');
         }
 
-        return Data::$albuns[$id];
+        return MemoryStorage::$albuns[$id];
     }
 
     private function exists(int $id) {
-       return isset(Data::$albuns[$id]);
+       return isset(MemoryStorage::$albuns[$id]);
     }
 }
