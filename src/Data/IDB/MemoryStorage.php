@@ -14,7 +14,7 @@ final class MemoryStorage {
         
     ];
     
-    static public array $albuns = [
+    static public array $albums = [
         
     ];
 
