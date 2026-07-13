@@ -13,7 +13,7 @@ abstract class Data {
     ];
     
     static public array $albuns = [
-    
+        
     ];
 
     static public function nextExperienceId() : int {

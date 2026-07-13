@@ -5,9 +5,11 @@ namespace App\Models;
 use InvalidArgumentException;
 
 class Album {
-    private int $id;
+    private readonly int $id;
+
     private string $name;
     private int $duration;
+    
     private ?string $desc;
     private ?string $artist;
     private ?string $genre;

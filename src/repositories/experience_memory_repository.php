@@ -22,13 +22,13 @@ class ExperienceMemoryRepository {
 
     }
 
-    public function findAll() : array {
+    public function fetchAll() : array {
 
         return Data::$experiences;
 
     }
 
-    public function findById(int $id) : Experience {
+    public function fetchById(int $id) : Experience {
 
         if(!$this->exists($id)) {
             throw new InvalidArgumentException('ID de Experiência não encontrado');
@@ -47,7 +47,7 @@ class ExperienceMemoryRepository {
 
     }
 
-    public function delete(int $id) : void {
+    public function destroy(int $id) : void {
 
         if(!$this->exists($id)) {
             throw new InvalidArgumentException('ID de Experiência não encontrado');

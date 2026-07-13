@@ -7,10 +7,12 @@ use App\Models\Album;
 use InvalidArgumentException;
 
 class Experience {
-    private int $id;
-    private Album $album;
+    private readonly int $id;
+    private readonly Album $album;
+
     private string $mood;
     private float $stars;
+    
     private ?string $desc;
 
     public function __construct(int $id, Album $album, string $mood, float $stars, ?string $desc = null) {
