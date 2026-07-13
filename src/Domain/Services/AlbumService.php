@@ -25,7 +25,7 @@ final class AlbumService {
             genre: $data?->genre
         );
 
-        $this->experienceRep->save($album);
+        $this->albumRep->save($album);
     }
 
     public function listAll(): array {
@@ -43,7 +43,7 @@ final class AlbumService {
     }
 
     public function delete(int $id) : void {
-        $this->experienceRep->destroy($id);
+        $this->albumRep->destroy($id);
     }
 
 }

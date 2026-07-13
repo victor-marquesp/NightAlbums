@@ -9,6 +9,6 @@ class NewExperienceData {
         public readonly Album $album,
         public readonly string $mood,
         public readonly float $stars,
-        public readonly ?string $desc
+        public readonly ?string $desc = null
     ) {}
 }

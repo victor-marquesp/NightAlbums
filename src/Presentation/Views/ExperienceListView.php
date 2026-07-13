@@ -20,8 +20,9 @@ final class ExperienceListView {
             return 0;
         }  
         
-        ExperienceListView::displayExperiences();
+        ExperienceListView::displayExperiences($experiences);
         echo "Seleciona a Experiência (ID) ou -1 para voltar -> ";
+        Output::pause();
 
     }
 
@@ -32,7 +33,7 @@ final class ExperienceListView {
     static private function displayExperiences(array $experiences) {
 
         foreach($experiences as $id => $experience) {
-            echo "[$id] - $experience->getName()\n";
+            echo "[$id] - " .$experience->getAlbum()->getName() . "...\n";
         }
 
     }   

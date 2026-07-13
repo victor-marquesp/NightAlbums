@@ -20,8 +20,9 @@ final class AlbumListView {
            return 0;
         }
         
-        AlbumListView::displayAlbums();
+        AlbumListView::displayAlbums($albums);
         echo "Seleciona o Álbum (ID) ou -1 para voltar -> ";
+        Output::pause();
 
     }
 
@@ -32,7 +33,7 @@ final class AlbumListView {
     static private function displayAlbums(array $albums) {
 
         foreach($albums as $id => $album) {
-            echo "[$id] - $album->getName()\n";
+            echo "[$id] - " . $album->getName() . "\n";
         }
 
     }   

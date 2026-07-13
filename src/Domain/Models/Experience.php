@@ -46,8 +46,8 @@ class Experience {
     }
 
     private function setStars(float $stars) : void {
-        if($stars < 0 || $stars > 10) {
-            throw new InvalidArgumentException("Estrelas devem estar no intervalo de 0 - 10");
+        if($stars < 0 || $stars > 5) {
+            throw new InvalidArgumentException("Estrelas devem estar no intervalo de 0 - 5");
         }
 
         $this->stars = $stars;
