@@ -1,6 +1,6 @@
 <?php
 
-namespace App\IDB;
+namespace App\Data\IDB;
 
 abstract class MemoryStorage {
 

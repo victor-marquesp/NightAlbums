@@ -1,6 +1,6 @@
 <?php
 
-namespace App\CLI;
+namespace App\Presentation\CLI;
 
 abstract class Menu {
 

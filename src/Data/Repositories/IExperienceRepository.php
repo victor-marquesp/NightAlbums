@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Data\Repositories;
 
-use App\Models\Experience;
+use App\Domain\Models\Experience;
 
 interface IExperienceRepository {
 

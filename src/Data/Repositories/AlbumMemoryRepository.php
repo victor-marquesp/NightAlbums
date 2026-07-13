@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Data\Repositories;
 
-use App\Models\Album;
-use App\IDB\MemoryStorage;
-use App\Repositories\IAlbumRepository;
+use App\Domain\Models\Album;
+use App\Data\IDB\MemoryStorage;
+use App\Data\Repositories\IAlbumRepository;
 
 use InvalidArgumentException;
 

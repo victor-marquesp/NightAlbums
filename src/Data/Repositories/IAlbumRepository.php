@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Data\Repositories;
 
-use App\Models\Album;
+use App\Domain\Models\Album;
 
 interface IAlbumRepository {
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Data\Repositories;
 
-use App\Models\Experience;
-use App\IDB\MemoryStorage;
-use App\Repositories\IExperienceRepository;
+use App\Domain\Models\Experience;
+use App\Data\IDB\MemoryStorage;
+use App\Data\Repositories\IExperienceRepository;
 
 use InvalidArgumentException;
 

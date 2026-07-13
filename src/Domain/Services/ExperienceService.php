@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Services;
+namespace App\Domain\Services;
 
-use App\Models\Experience;
-use App\Models\Album;
-use App\DTO\NewExperienceData;
-use App\Repositories\IExperienceRepository;
-use App\Repositories\IAlbumRepository;
+use App\Domain\Models\Experience;
+use App\Domain\Models\Album;
+use App\Domain\DTO\NewExperienceData;
+use App\Data\Repositories\IExperienceRepository;
+use App\Data\Repositories\IAlbumRepository;
 
 class ExperienceService {
 

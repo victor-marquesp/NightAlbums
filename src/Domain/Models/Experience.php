@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Domain\Models;
 
-use App\Models\Album;
+use App\Domain\Models\Album;
 
 use InvalidArgumentException;
 

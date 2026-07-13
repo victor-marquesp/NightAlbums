@@ -1,8 +1,8 @@
 <?php
 
-namespace App\DTO;
+namespace App\Domain\DTO;
 
-use App\Models\Album;
+use App\Domain\Models\Album;
 
 class NewExperienceData {
     public function __construct(
