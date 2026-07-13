@@ -10,13 +10,10 @@ use App\Repositories\AlbumMemoryRepository;
 
 class ExperienceService {
 
-    public ExperienceMemoryRepository $experienceRep;
-    public AlbumMemoryRepository $albumRep;
-
-    public function __construct() {
-        $this->experienceRep = new ExperienceMemoryRepository();
-        $this->albumRep = new AlbumMemoryRepository();
-    }
+    public function __construct(
+        private ExperienceMemoryRepository $experienceRep, 
+        private AlbumMemoryRepository $albumRep
+    ) {}
 
     public function create(NewExperienceData $data) : void {
 
