@@ -2,9 +2,6 @@
 
 namespace App\Repositories;
 
-require 'src/models/experience.php';
-require 'src/idb/memory_storage.php';
-
 use App\Models\Experience;
 use App\IDB\MemoryStorage;
 

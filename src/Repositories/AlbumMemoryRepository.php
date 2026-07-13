@@ -2,9 +2,6 @@
 
 namespace App\Repositories;
 
-require 'src/models/album.php';
-// require 'src/idb/memory_storage.php';
-
 use App\Models\Album;
 use App\IDB\MemoryStorage;
 

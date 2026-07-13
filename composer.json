@@ -3,7 +3,7 @@
     "description": "Rate your album experiences.",
     "autoload": {
         "psr-4": {
-            "W4rqu\\NightAlbums\\": "src/"
+            "App\\": "src/"
         }
     },
     "authors": [

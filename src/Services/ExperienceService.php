@@ -2,11 +2,6 @@
 
 namespace App\Services;
 
-// require 'src/models/experience.php';
-// require 'src/dto/new_experience_data.php';
-require 'src/repositories/experience_memory_repository.php';
-require 'src/repositories/album_memory_repository.php';
-
 use App\Models\Experience;
 use App\Models\Album;
 use App\DTO\NewExperienceData;
