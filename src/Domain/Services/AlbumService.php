@@ -7,7 +7,7 @@ use App\Domain\Models\Album;
 
 use App\Data\Repositories\IAlbumRepository;
 
-final class ExperienceService {
+final class AlbumService {
 
     public function __construct(private IAlbumRepository $albumRep) {}
 
