@@ -1,0 +1,41 @@
+<?php
+
+namespace App\Presentation\CLI;
+
+final class Output {
+
+    private function __construct() {}
+
+    static public function title(string $title) : void {
+        echo "=======================================================\n";
+        echo "\t $title\n";
+        echo "=======================================================\n";
+    }
+
+    static public function goodbye() : void {
+        echo "=======================================================\n";
+        echo "    ADEUS, OBRIGADO POR UTILIZAR\n";
+        echo "=======================================================\n";
+    }
+
+    static public function success(string $message) : void {
+        echo "=======================================================\n";
+        echo "SUCESSO: $message\n";
+        echo "=======================================================\n";
+    }
+
+    static public function error(string $message) : void {
+        echo "=======================================================\n";
+        echo "ERRO: $message\n";
+        echo "=======================================================\n";
+    }
+
+    static public function pause() : void {
+        readline("DIGITE QUALQUER TECLA PARA CONTINUAR... \t\t\t");
+    }
+
+    static public function clear() : void {
+        echo "\e[H\e[J";
+    }
+
+}

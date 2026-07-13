@@ -2,11 +2,13 @@
 
 namespace App\Data\IDB;
 
-abstract class MemoryStorage {
+final class MemoryStorage {
 
     static private int $experienceId = 0;
 
     static private int $albumId = 0;
+
+    private function __construct() {}
 
     static public array $experiences = [
         

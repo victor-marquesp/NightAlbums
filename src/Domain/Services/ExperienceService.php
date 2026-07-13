@@ -8,7 +8,7 @@ use App\Domain\DTO\NewExperienceData;
 use App\Data\Repositories\IExperienceRepository;
 use App\Data\Repositories\IAlbumRepository;
 
-class ExperienceService {
+final class ExperienceService {
 
     public function __construct(
         private IExperienceRepository $experienceRep, 

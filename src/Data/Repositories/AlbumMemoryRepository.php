@@ -8,7 +8,7 @@ use App\Data\Repositories\IAlbumRepository;
 
 use InvalidArgumentException;
 
-class AlbumMemoryRepository implements IAlbumRepository {
+final class AlbumMemoryRepository implements IAlbumRepository {
 
     public function save(Album $album) : void {
         

@@ -8,7 +8,7 @@ use App\Data\Repositories\IExperienceRepository;
 
 use InvalidArgumentException;
 
-class ExperienceMemoryRepository implements IExperienceRepository {
+final class ExperienceMemoryRepository implements IExperienceRepository {
 
     public function save(Experience $experience) : void {
 

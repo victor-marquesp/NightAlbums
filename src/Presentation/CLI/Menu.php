@@ -2,64 +2,53 @@
 
 namespace App\Presentation\CLI;
 
-abstract class Menu {
+use App\Presentation\Views\MenuView;
+use App\Presentation\CLI\Input;
+use App\Presentation\CLI\Output;
+use App\Presentation\Controllers\ExperienceController;
 
-    static array $options = [1, 2, 0];
+class Menu {
 
-    static public function displayMenu() : int {
+    public function __construct(public ExperienceController $expControll) {}
 
-        Menu::cleanScreen();
-        Menu::showMenu();
+    public function runMenu() {
+        do {
 
-        $option = (int) readline();
+            $this->displayMenu();
+            $option = Input::number();
+            $this->triggerMenuOption($option);
 
-        if(Menu::validateOption($option)) {
-            return $option;
-        }
-
-        Menu::displayMessage(-1);
-        return -1;
+        } while($option != 0);
     }
 
-    static private function validateOption($option) : bool {
-
-        if(!is_int($option)) {
-            return false;
-        }
-
-        if(!in_array($option, Menu::$options, true)) {
-            return false;
-        }
-
-        return true;
-
+    private function displayMenu() {
+        MenuView::show();
     }
 
-    static private function showMenu() : void {
-        echo "|-----------------------------------------------------------|\n";
-        echo "|    ALBUM NIGHTS - 💽                                     |\n";
-        echo "|----------------------------------------------------------|\n";
-        echo "(1) - Registrar Experiência\n";
-        echo "(2) - Listar Suas Experiências\n";
-        echo "(0) - Sair\n";
-        echo "------------------------------------------------------------\n";
-        echo "Digite sua Opcao -> ";            
-    }
+    private function triggerMenuOption(int $option) {
 
-    static private function cleanScreen() : void {
-        echo "\e[H\e[J";
-    }  
+        switch ($option) {
 
-    static private function displayMessage(int $message) : void {
+            case 1:
+                Output::success('OPTION 1 TRIGGERED');
+                Output::pause();
+                break;
 
-        Menu::cleanScreen();
+            case 2:
+                $this->expControll->listAll();
+                break;
 
-        switch($message) {
-            case -1:
-                echo "OPÇÃO DE MENU PRINCIPAL INVÁLIDA";
-                readline('Digite qualquer coisa para continuar... ');
+            case 0:
+                Output::clear();
+                Output::goodbye();
+                Output::pause();
+                break;
+
+            default:
+                Output::error('OPÇÃO DE MENU INVÁLIDA');
+                Output::pause();
                 break;
         }
-    }  
+    }
 
 }
