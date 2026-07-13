@@ -20,7 +20,7 @@ abstract class MemoryStorage {
         return MemoryStorage::$experienceId++;
     }
 
-    static public function nexAlbumId() : int {
+    static public function nextAlbumId() : int {
         return MemoryStorage::$albumId++;
     }
 }
