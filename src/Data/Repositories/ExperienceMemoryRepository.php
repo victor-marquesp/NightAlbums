@@ -4,7 +4,7 @@ namespace App\Data\Repositories;
 
 use App\Domain\Models\Experience;
 use App\Data\IDB\MemoryStorage;
-use App\Data\Repositories\IExperienceRepository;
+use App\Data\Repositories\Contracts\IExperienceRepository;
 
 use InvalidArgumentException;
 

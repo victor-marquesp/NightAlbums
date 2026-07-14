@@ -4,7 +4,7 @@ namespace App\Data\Repositories;
 
 use App\Domain\Models\Album;
 use App\Data\IDB\MemoryStorage;
-use App\Data\Repositories\IAlbumRepository;
+use App\Data\Repositories\Contracts\IAlbumRepository;
 
 use InvalidArgumentException;
 

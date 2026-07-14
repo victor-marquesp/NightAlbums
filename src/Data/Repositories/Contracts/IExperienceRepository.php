@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Data\Repositories;
+namespace App\Data\Repositories\Contracts;
 
 use App\Domain\Models\Experience;
 
