@@ -15,7 +15,12 @@ class Experience {
     
     private ?string $desc;
 
-    public function __construct(int $id, Album $album, string $mood, float $stars, ?string $desc = null) {
+    public function __construct(
+        int $id, 
+        Album $album, 
+        string $mood, 
+        float $stars, 
+        ?string $desc = null) {
         
         $this->setId($id);
         $this->setAlbum($album);

@@ -16,46 +16,23 @@ class AlbumController {
 
     public function __construct(private AlbumService $albumServ) {}
 
-    public function create(NewAlbumData $albumData) {
-        try {
-            $this->albumServ->create($albumData);
-            Output::sucess('Álbum criado com sucesso');
-        } catch(InvalidArgumentException $e) {
-            Output::error($e->get_message);
-            Output::pause();
-        }  
+    public function create(NewAlbumData $albumData) : void {
+        $this->albumServ->create($albumData);
     }
 
-    public function listAll() {
-        AlbumListView::show($this->albumServ->listAll());
+    public function listAll() : array {
+        return $this->albumServ->listAll();
     }
 
-    public function listById(int $id) {
-        try {
-            return $this->albumServ->listById($id);
-        } catch (InvalidArgumentException $e) {
-            Output::error($e->get_message);
-            Output::pause();
-        }
+    public function listById(int $id) : Album {
+        return $this->albumServ->listById($id);
     }
 
-    public function edit(Album $album) {
-        try {
-            $this->albumServ->edit($album);
-            Output::sucess('Álbum editado com sucesso');
-        } catch(InvalidArgumentException $e) {
-            Output::error($e->get_message);
-            Output::pause();
-        } 
+    public function edit(Album $album) : void {
+        $this->albumServ->edit($album);
     }
 
-    public function delete(int $id) {
-        try {
-            $this->albumServ->delete($id);
-            Output::sucess('Álbum deletado com sucesso');
-        } catch (InvalidArgumentException $e) {
-            Output::error($e->get_message);
-            Output::pause();
-        }
+    public function delete(int $id) : void {
+        $this->albumServ->delete($id);
     }
 }
