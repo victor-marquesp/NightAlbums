@@ -10,13 +10,14 @@ use InvalidArgumentException;
 
 final class AlbumMemoryRepository implements IAlbumRepository {
 
-    public function save(Album $album) : void {
+    public function save(Album $album) : Album {
 
         if ($this->exists($album->getId())) {
             throw new InvalidArgumentException('ID de Álbum já existente');
         }
 
         MemoryStorage::$albums[$album->getId()] = $album;
+        return $album;
     }
     
     public function findAll() : array {
@@ -31,22 +32,24 @@ final class AlbumMemoryRepository implements IAlbumRepository {
         return MemoryStorage::$albums[$id];
     }
 
-    public function update(Album $album) : void {
+    public function update(Album $album) : Album {
         
         if(!$this->exists($album->getId())) {
             throw new InvalidArgumentException('ID de Álbum não encontrado');
         }
 
         MemoryStorage::$albums[$album->getId()] = $album;
+        return $album;
     }
 
-    public function destroy(int $id) : void {
+    public function destroy(int $id) : int {
 
         if(!$this->exists($id)) {
             throw new InvalidArgumentException('ID de Álbum não encontrado');
         }
 
         unset(MemoryStorage::$albums[$id]);
+        return $id;
 
     }
 
@@ -56,7 +59,7 @@ final class AlbumMemoryRepository implements IAlbumRepository {
 
     }
 
-    private function exists(int $id) {
+    private function exists(int $id) : bool {
        return isset(MemoryStorage::$albums[$id]);
     }
 }

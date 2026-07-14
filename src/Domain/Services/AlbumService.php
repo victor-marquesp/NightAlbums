@@ -11,7 +11,7 @@ final class AlbumService {
 
     public function __construct(private IAlbumRepository $albumRep) {}
 
-    public function create(NewAlbumData $data) : void {
+    public function create(NewAlbumData $data) : Album {
 
         $id = $this->albumRep->generateId();  
 
@@ -26,6 +26,7 @@ final class AlbumService {
         );
 
         $this->albumRep->save($album);
+        return $album;
     }
 
     public function listAll(): array {
@@ -36,14 +37,15 @@ final class AlbumService {
         return $this->albumRep->findById($id);
     }
 
-    public function edit(Album $album) {
+    public function edit(Album $album) : Album {
 
         $this->albumRep->update($album);
-
+        return $album;
     }
 
-    public function delete(int $id) : void {
+    public function delete(int $id) : int {
         $this->albumRep->destroy($id);
+        return $id;
     }
 
 }

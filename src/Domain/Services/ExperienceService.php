@@ -15,7 +15,7 @@ final class ExperienceService {
         private IAlbumRepository $albumRep
     ) {}
 
-    public function create(NewExperienceData $data) : void {
+    public function create(NewExperienceData $data) : Experience {
 
         $this->validateAlbum($data->album);
 
@@ -33,6 +33,7 @@ final class ExperienceService {
         );
 
         $this->experienceRep->save($experience);
+        return $experience;
     }
 
     public function listAll(): array {
@@ -43,15 +44,17 @@ final class ExperienceService {
         return $this->experienceRep->findById($id);
     }
 
-    public function edit(Experience $experience) {
+    public function edit(Experience $experience) : Experience {
 
         $this->validateAlbum($experience->getAlbum());
 
         $this->experienceRep->update($experience);
+        return $experience;
     }
 
-    public function delete(int $id) : void {
+    public function delete(int $id) : int {
         $this->experienceRep->destroy($id);
+        return $id;
     }
 
     private function validateAlbum(Album $album) {

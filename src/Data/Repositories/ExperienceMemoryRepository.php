@@ -10,14 +10,14 @@ use InvalidArgumentException;
 
 final class ExperienceMemoryRepository implements IExperienceRepository {
 
-    public function save(Experience $experience) : void {
+    public function save(Experience $experience) : Experience {
 
         if ($this->exists($experience->getId())) {
             throw new InvalidArgumentException('ID de Experiência já existente');
         }
 
         MemoryStorage::$experiences[$experience->getId()] = $experience;
-
+        return $experience;
     }
 
     public function findAll() : array {
@@ -35,24 +35,24 @@ final class ExperienceMemoryRepository implements IExperienceRepository {
         return MemoryStorage::$experiences[$id];
     }
 
-    public function update(Experience $experience) : void {
+    public function update(Experience $experience) : Experience {
 
         if(!$this->exists($experience->getId())) {
             throw new InvalidArgumentException('ID de Experiência não encontrado');
         }
 
         MemoryStorage::$experiences[$experience->getId()] = $experience;
-
+        return $experience;
     }
 
-    public function destroy(int $id) : void {
+    public function destroy(int $id) : int {
 
         if(!$this->exists($id)) {
             throw new InvalidArgumentException('ID de Experiência não encontrado');
         }
 
         unset(MemoryStorage::$experiences[$id]);
-
+        return $id;
     }
     
     private function exists(int $id) : bool {    
