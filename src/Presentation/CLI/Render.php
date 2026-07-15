@@ -15,7 +15,6 @@ final class Render {
         foreach($options as $number => $text) {
             echo "($number) - { $text } .\n";
         }
-        echo 'Selecione sua opção -> ';
         Output::separator();
 
     }

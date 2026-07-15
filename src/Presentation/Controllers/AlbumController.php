@@ -26,7 +26,7 @@ class AlbumController {
             );
 
         } catch(Exception $e) {
-            return new Failure(message: 'Falha ao criar Álbum');
+            return new Failure(message: $e->getMessage());
         }
     }
 
@@ -40,7 +40,7 @@ class AlbumController {
             );
 
         } catch(Exception $e) {
-            return new Failure(message: 'Falha ao listar todos os Álbuns');
+            return new Failure(message: $e->getMessage());
         } 
     }
 
@@ -54,7 +54,7 @@ class AlbumController {
             );
 
         } catch(Exception $e) {
-            return new Failure(message: 'Falha ao listar Álbum');
+            return new Failure(message: $e->getMessage());
         }
     }
 
@@ -66,7 +66,7 @@ class AlbumController {
                 message: 'Álbum editado com sucesso'
             );
         } catch(Exception $e) {
-            return new Failure(message: 'Falha ao editar Álbum');
+            return new Failure(message: $e->getMessage());
         }
         
     }
@@ -79,7 +79,7 @@ class AlbumController {
                 message: 'Álbum deletado com sucesso'
             );
         } catch(Exception $e) {
-            return new Failure(message: 'Falha ao deletar Álbum');
+            return new Failure(message: $e->getMessage());
         }
     }
 }

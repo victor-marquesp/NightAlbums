@@ -26,7 +26,7 @@ class ExperienceController {
             );
 
         } catch(Exception $e) {
-            return new Failure('Falha ao criar Experiência');
+            return new Failure($e->getMessage());
         }
     }
 
@@ -39,7 +39,7 @@ class ExperienceController {
             );
 
         } catch(Exception $e) {
-            return new Failure('Falha ao listar Experiências');
+            return new Failure($e->getMessage());
         }
     }
 
@@ -52,7 +52,7 @@ class ExperienceController {
             );
 
         } catch(Exception $e) {
-            return new Failure('Falha ao listar Experiência');
+            return new Failure($e->getMessage());
         }
     }
 
@@ -65,7 +65,7 @@ class ExperienceController {
             );
 
         } catch(Exception $e) { 
-            return new Failure('Falha ao editar Experiência'); 
+            return new Failure($e->getMessage()); 
         }
     }
 
@@ -78,7 +78,7 @@ class ExperienceController {
             );
 
         } catch(Exception $e) { 
-            return new Failure('Falha ao deletar Experiência');
+            return new Failure($e->getMessage());
         }
     }
 }

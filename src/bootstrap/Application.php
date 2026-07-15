@@ -12,37 +12,63 @@ use App\Domain\Services\AlbumService;
 use App\Presentation\Controllers\ExperienceController;
 use App\Presentation\Controllers\AlbumController;
 
-use App\Presentation\CLI\Menu;
+use App\Presentation\Screens\MainMenuScreen;
+use App\Presentation\Screens\Album\AlbumListScreen;
+use App\Presentation\Screens\Album\AlbumScreen;
+use App\Presentation\Screens\Experience\ExperienceListScreen;
+use App\Presentation\Screens\Experience\ExperienceFormScreen;
+use App\Presentation\Screens\Experience\ExperienceScreen;
+
+use App\Navigation\RouteNames;
+use App\Navigation\Router;
 
 class Application {
 
-    private Menu $menu;
+    public function run() : void{
 
-    public function run() {
         $this->build();
-        $this->menu->runMenu(); 
+        Router::init(RouteNames::MainMenu);
+
     }
 
-    private function build() {
+    private function build() : void {
 
-        // Injeta as dependências
+        // Instancia as dependências as dependências
 
+        // Repositórios
         $experienceRepository = new ExperienceMemoryRepository();
         $albumRepository = new AlbumMemoryRepository();
 
+        // Services
         $experienceService = new ExperienceService(
             experienceRep: $experienceRepository,
             albumRep: $albumRepository
         );
         $albumService = new AlbumService($albumRepository);
 
+        // Controllers
         $experienceController = new ExperienceController($experienceService);
         $albumController = new AlbumController($albumService);
 
-        $this->menu = new Menu(
-            expControll: $experienceController,
-            albumControll: $albumController
-        );
+        // Screens
+        $mainMenuScreen = new MainMenuScreen();
+
+        $albumListScreen = new AlbumListScreen();
+        $albumScreen = new AlbumScreen();
+
+        $experienceScreen = new ExperienceScreen();
+        $experienceFormScreen = new ExperienceFormScreen();
+        $experienceListScreen = new ExperienceListScreen();
+
+        // Registra as Rotas
+
+        Router::register(route: RouteNames::MAIN_MENU, screen: $mainMenuScreen);
+        Router::register(route: RouteNames::ALBUM_LIST, screen: $albumListScreen);
+        Router::register(route: RouteNames::ALBUM, screen: $albumScreen);
+        Router::register(route: RouteNames::EXPERIENCE_LIST, screen: $experienceListScreen);
+        Router::register(route: RouteNames::EXPERIENCE_CREATE, screen: $experienceFormScreen);
+        Router::register(route: RouteNames::EXPERIENCE, screen: $experienceScreen);
+
     }
 
 }

@@ -19,11 +19,11 @@ final class MemoryStorage {
     ];
 
     static public function nextExperienceId() : int {
-        return MemoryStorage::$experienceId++;
+        return self::$experienceId++;
     }
 
     static public function nextAlbumId() : int {
-        return MemoryStorage::$albumId++;
+        return self::$albumId++;
     }
 }
 
