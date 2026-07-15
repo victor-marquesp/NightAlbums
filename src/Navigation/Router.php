@@ -7,8 +7,7 @@ use App\Navigation\Navigator;
 
 use App\Presentation\Screens\Abstracts\Screen;
 
-final class Router
-{
+final class Router {
     private static array $routes = [];
 
     private function __construct() {}

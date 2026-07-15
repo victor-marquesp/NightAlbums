@@ -11,15 +11,33 @@ final class Render {
 
     static public function menu(array $options) {
 
-        Output::separator();
         foreach($options as $number => $text) {
-            echo "($number) - { $text } .\n";
+            echo "($number) - { $text } \n";
         }
-        Output::separator();
 
     }
 
-    static public function list() {
+    public static function list(array $items, callable $formatter): void
+    {
+
+        foreach ($items as $id => $item) {
+            self::listItem($id, $item, $formatter);
+        }
+
+    }
+
+    static public function listItem(int $id, mixed $item, callable $formatter) : void {
+
+        echo "[$id] - " . $formatter($item) . "\n";
+        
+    }
+
+    static public function entity(array $fields) {
+        
+        foreach($fields as $field => $value) {
+            echo "[$field]: " .($value ?? 'Sem Valor')  ."\n";
+        }
+
     }
 
     static public function table() {

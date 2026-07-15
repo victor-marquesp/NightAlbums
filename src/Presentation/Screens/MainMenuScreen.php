@@ -4,6 +4,7 @@ namespace App\Presentation\Screens;
 
 use App\Presentation\Screens\Abstracts\Screen;
 use App\Presentation\Views\MainMenuView;
+use App\Presentation\Views\FeedbackView;
 use App\Presentation\CLI\Output;
 
 use App\Navigation\Router;
@@ -15,12 +16,8 @@ class MainMenuScreen extends Screen {
 
     public function run() : void {
 
-        do {
-
-            $option = MainMenuView::read();
-            $this->triggerOption($option);
-
-        } while($option != 0);
+        $option = MainMenuView::read();
+        $this->triggerOption($option);
 
     }
 
@@ -37,14 +34,12 @@ class MainMenuScreen extends Screen {
                 break;
 
             case 0:
-                Output::clear();
-                Output::goodbye();
-                Output::pause();
+                FeedbackView::exit();
                 Router::goBack();
                 break;
 
             default:
-                Output::error('Opção de Menu Inválida');
+                FeedbackView::failure('Opção Inválida');
                 break;
         }
     }

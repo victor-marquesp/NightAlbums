@@ -34,7 +34,7 @@ final class Output {
         echo "=======================================================\n";
     }
 
-    static public function error(string $message) : void {
+    static public function failure(string $message) : void {
         echo "=======================================================\n";
         echo "ERRO: $message\n";
         echo "=======================================================\n";

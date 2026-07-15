@@ -9,6 +9,12 @@ use App\Bootstrap\Application;
 
 // GeneralTest::test();
 
-$app = new Application();
+try {
 
-$app->run();
+    $app = new Application();
+    $app->run();
+
+} catch(Exception $e) {
+    print_r($e);
+    exit(1);
+}

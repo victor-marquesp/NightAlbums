@@ -12,11 +12,14 @@ final class MainMenuView {
 
     static public function read() : int {
         Output::clear();
+        Output::header('NIGHTALBUMS');
         Render::menu([
             1 => 'Álbuns',
             2 => 'Minhas Experiências',
             0 => 'Sair'
         ]);
+        Output::separator();
+
         return Input::number('Digite sua opção -> ');
     }
 

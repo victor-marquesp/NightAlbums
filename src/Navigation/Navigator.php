@@ -18,12 +18,15 @@ final class Navigator {
         self::$running = true;
         self::$stack->push($initialScreen);
 
-        do {
+        while(self::$running) {
+    
+            if(self::$stack->isEmpty()) {
+                break;
+            }
             
             self::$stack->top()->run();
 
-        } while(!self::$stack->isEmpty());
-
+        }
         self::$running = false;
         
     }
