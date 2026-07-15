@@ -16,10 +16,16 @@ final class AlbumListView {
 
         Output::clear();
         Output::header('Álbuns Cadastrados');
-        Render::list(
-            $albums,
-            fn (Album $a) => $a->getName()
-        );
+
+        if(empty($albums)) {
+            Output::empty('Sem Álbuns Cadastrados');
+        }
+        else {
+           Render::list(
+                $albums,
+                fn (Album $a) => $a->getName()
+            );
+        }
 
         Output::separator();
         

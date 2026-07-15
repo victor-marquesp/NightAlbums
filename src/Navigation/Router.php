@@ -21,14 +21,23 @@ final class Router {
     }
 
     static public function init(RouteNames $initialRoute) {
+
+        if (!isset(self::$routes[$initialRoute->value])) throw new RuntimeException('ROTA NÃO REGISTRADA'); 
+
         Navigator::start(self::resolve($initialRoute));
     }
 
     static public function goTo(RouteNames $route): void {
+
+        if (!isset(self::$routes[$route->value])) throw new RuntimeException('ROTA NÃO REGISTRADA'); 
+
         Navigator::push(self::resolve($route));
     }
 
     static public function switchTo(RouteNames $route): void {
+
+        if (!isset(self::$routes[$route->value])) throw new RuntimeException('ROTA NÃO REGISTRADA'); 
+    
         Navigator::replace(self::resolve($route));
     }
 

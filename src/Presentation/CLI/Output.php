@@ -40,6 +40,10 @@ final class Output {
         echo "=======================================================\n";
     }
 
+    static public function empty($message) : void {
+        echo "VAZIO: $message\n";
+    }
+
     static public function pause() : void {
         readline("DIGITE QUALQUER TECLA PARA CONTINUAR... \t\t\t");
     }

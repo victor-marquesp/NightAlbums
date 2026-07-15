@@ -21,8 +21,7 @@ class AlbumScreen extends Screen {
 
         $result = $this->albumController->listById(AlbumView::collectId());
 
-        if (!($result instanceof Success)) {
-            FeedbackView::failure($result->message);
+        if(!$this->handle($result)) {
             Router::goBack();
             return;
         }

@@ -17,15 +17,20 @@ final class ExperienceListView {
         Output::clear();
         Output::header('Experiências Cadastradas');
 
-        Render::list(
-            $experiences,
-            fn (Experience $e) =>
-                $e->getAlbum()->getName()
-                . ' | '
-                . substr($e->getDesc() ?? '', 0, 20)
-                . ' | '
-                . $e->getMood()
-        );
+        if(empty($experiences)) {
+            Output::empty('Sem experiências cadastradas');
+        }
+        else {
+            Render::list(
+                $experiences,
+                fn (Experience $e) =>
+                    $e->getAlbum()->getName()
+                    . ' | '
+                    . substr($e->getDesc() ?? '', 0, 20)
+                    . ' | '
+                    . $e->getMood()
+            );
+        }
         Output::separator();
         
         Render::menu([

@@ -21,8 +21,8 @@ class ExperienceListScreen extends Screen {
 
         $result = $this->experienceController->listAll();
 
-        if (!$result instanceof Success) {
-            FeedbackView::failure($result->message);
+        if(!$this->handle($result)) {
+            Router::goBack();
             return;
         }
 
@@ -36,7 +36,7 @@ class ExperienceListScreen extends Screen {
         switch($option) {
 
             case 1:
-                Router::goTo(RouteNames::EXPERIENCE);
+                FeedbackView::failure('NÃO IMPLEMENTADO');
                 break;
 
             case 2:
