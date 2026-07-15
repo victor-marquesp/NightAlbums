@@ -22,7 +22,7 @@ final class Router
     }
 
     static public function init(RouteNames $initialRoute) {
-        Navigator::start(self::resolve($initialRoute->value));
+        Navigator::start(self::resolve($initialRoute));
     }
 
     static public function goTo(RouteNames $route): void {

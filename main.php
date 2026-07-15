@@ -2,13 +2,13 @@
 
 
 require 'vendor/autoload.php';
-require 'Tests/GeneralTest.php';
+// require 'Tests/GeneralTest.php';
 
-// use App\Bootstrap\Application;
-use Tests\GeneralTest;
+use App\Bootstrap\Application;
+// use Tests\GeneralTest;
 
-GeneralTest::test();
+// GeneralTest::test();
 
-// $app = new Application();
+$app = new Application();
 
-// $app->run();
+$app->run();

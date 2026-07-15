@@ -2,8 +2,8 @@
 
 namespace App\Presentation\Screens\Experience;
 
-use App\Presentation\Screens\Contracts\IScreen;
+use App\Presentation\Screens\Abstracts\Screen;
 
-class ExperienceFormScreen implements IScreen {
+class ExperienceFormScreen extends Screen {
 
 }

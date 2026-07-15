@@ -5,7 +5,7 @@ namespace App\Domain\Services;
 use App\Domain\DTO\NewAlbumData;
 use App\Domain\Models\Album;
 
-use App\Data\Repositories\IAlbumRepository;
+use App\Data\Repositories\Contracts\IAlbumRepository;
 
 final class AlbumService {
 

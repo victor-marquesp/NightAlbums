@@ -2,8 +2,8 @@
 
 namespace App\Presentation\Screens\Album;
 
-use App\Presentation\Screens\Contracts\IScreen;
+use App\Presentation\Screens\Abstracts\Screen;
 
-class AlbumListScreen implements IScreen {
+class AlbumListScreen extends Screen {
 
 }
