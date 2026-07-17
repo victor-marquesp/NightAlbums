@@ -21,7 +21,7 @@ final class ExperienceListView {
 
         if (empty($experiences)) {
 
-            Output::empty('Sem Álbuns Cadastrados');
+            Output::empty('Sem Experiências Cadastrados');
             $menu = [
                 0 => 'Voltar'
             ];
@@ -33,7 +33,7 @@ final class ExperienceListView {
                 fn (Experience $e) =>
                     $e->getAlbum()->getName()
                     . ' | '
-                    . substr($e->getDesc() ?? '', 0, 20)
+                    . substr($e->getDesc() ?? 'Sem Descrição', 0, 20)
                     . ' | '
                     . $e->getMood()
             );

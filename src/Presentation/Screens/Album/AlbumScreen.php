@@ -53,7 +53,7 @@ class AlbumScreen extends Screen {
                 break;
 
             case 2:
-                FeedbackView::failure('NÃO IMPLEMENTADO');
+                Router::goTo(RouteNames::EXPERIENCE_CREATE, $this->album->getId());
                 break;
 
             case 0:

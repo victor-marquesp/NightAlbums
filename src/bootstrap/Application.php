@@ -99,7 +99,7 @@ class Application {
         );
 
         $experienceService->create(new NewExperienceData(
-                album: $albumService->listById(0),
+                albumId: 0,
                 mood: 'spacefull',
                 stars: 5,
                 desc: 'It sounds like space',
@@ -107,22 +107,22 @@ class Application {
         );
 
         $experienceService->create(new NewExperienceData(
-                album: $albumService->listById(1),
+                albumId: 1,
                 mood: 'assustador',
                 stars: 5,
             )
         );
 
         $experienceService->create(new NewExperienceData(
-                album: $albumService->listById(2),
+                albumId: 2,
                 mood: 'aggressive',
                 stars: 5,
             )
         );
 
         $experienceService->create(new NewExperienceData(
-                album: $albumService->listById(3),
-                mood: 'beautyfull',
+                albumId: 3,
+                mood: 'beautifull',
                 stars: 4,
                 desc: 'actually didnt listen yet',
             )

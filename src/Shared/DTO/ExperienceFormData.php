@@ -2,13 +2,12 @@
 
 namespace App\Shared\DTO;
 
-use App\Domain\Models\Album;
+class ExperienceFormData {
 
-class NewExperienceData {
     public function __construct(
-        public readonly int $albumId,
         public readonly string $mood,
         public readonly float $stars,
-        public readonly ?string $desc = null
+        public readonly ?string $desc
     ) {}
+
 }

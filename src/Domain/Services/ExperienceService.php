@@ -17,14 +17,13 @@ final class ExperienceService {
 
     public function create(NewExperienceData $data) : Experience {
 
-        $this->validateAlbum($data->album);
+        $album = $this->listAlbum($data->albumId);
 
         $id = $this->experienceRep->generateId();  
 
-
         $experience = new Experience(
             id: $id,
-            album: $data->album,
+            album: $album,
 
             mood: $data->mood,
             stars: $data->stars,
@@ -46,7 +45,7 @@ final class ExperienceService {
 
     public function edit(Experience $experience) : Experience {
 
-        $this->validateAlbum($experience->getAlbum());
+        $this->listAlbum($experience->getAlbum()->getId());
 
         $this->experienceRep->update($experience);
         return $experience;
@@ -57,7 +56,7 @@ final class ExperienceService {
         return $id;
     }
 
-    private function validateAlbum(Album $album) {
-        $this->albumRep->findById($album->getId());
+    public function listAlbum(int $albumId) : Album {
+        return $this->albumRep->findById($albumId);
     }
 }
