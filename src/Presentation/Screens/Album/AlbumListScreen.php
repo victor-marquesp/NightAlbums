@@ -19,26 +19,23 @@ class AlbumListScreen extends Screen {
 
     public function __construct(private AlbumController $albumController) {}
 
-    public function load() : void {
+    public function load() : bool {
 
         $result = $this->albumController->listAll();
 
         if(!$this->handle($result)) {
             Router::goBack();
-            return;
+            return false;
         }
 
         $this->albums = $result->data;
-
+        return true;
     }
 
-    public function run() : void {
-
-        parent::run();
-
+    protected function render(): void {
         $result = AlbumListView::read($this->albums);
-        $this->triggerOption($result);
 
+        $this->triggerOption($result);
     }
 
     protected function triggerOption(array $result) : void {

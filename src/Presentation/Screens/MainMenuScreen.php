@@ -14,7 +14,7 @@ class MainMenuScreen extends Screen {
 
     public function __construct() {}
 
-    public function run() : void {
+    public function render() : void {
 
         $option = MainMenuView::read();
         $this->triggerOption($option);

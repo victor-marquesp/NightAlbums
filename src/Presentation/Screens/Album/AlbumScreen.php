@@ -24,22 +24,20 @@ class AlbumScreen extends Screen {
             private int $albumId
         ) {}
 
-    public function load() : void {
+    public function load() : bool {
 
         $result = $this->albumController->listById($this->albumId);
 
         if(!$this->handle($result)) {
             Router::goBack();
-            return;
+            return false;
         }
 
         $this->album = $result->data;
-
+        return true;
     }
 
-    public function run() : void {
-
-        parent::run();
+    public function render() : void {
         
         $option = AlbumView::read($this->album);
         $this->triggerOption($option);

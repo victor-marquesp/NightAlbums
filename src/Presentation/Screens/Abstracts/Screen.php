@@ -8,22 +8,31 @@ use App\Shared\Traits\HandleFailure;
 
 abstract class Screen implements IScreen {
 
-    protected bool $dirty = true;
-
     use HandleFailure;
 
-    public function load() {}
+    protected bool $dirty = true;
 
-    public function run() : void {
+    public function run(): void {
 
         if ($this->dirty) {
-            $this->load();
+
+            if (!$this->load()) {
+                return;
+            }
+
             $this->dirty = false;
         }
-        
+
+        $this->render();
     }
 
-    public function invalidate() {
+    protected function load(): bool {
+        return true;
+    }
+
+    public function invalidate() : void {
         $this->dirty = true;
     }
+
+    abstract protected function render(): void;
 }
