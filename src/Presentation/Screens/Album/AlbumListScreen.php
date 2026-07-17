@@ -34,18 +34,17 @@ class AlbumListScreen extends Screen {
 
     public function run() : void {
 
-        $option = AlbumListView::read($this->albums);
-        $this->triggerOption($option);
+        $result = AlbumListView::read($this->albums);
+        $this->triggerOption($result);
 
     }
 
-    protected function triggerOption(int $option) : void {
+    protected function triggerOption(array $result) : void {
 
-        switch($option) {
+        switch($result['option']){
 
             case 1:
-                $id = AlbumListView::collectId();
-                Router::goTo(RouteNames::ALBUM, $id);
+                Router::goTo(RouteNames::ALBUM, $result['albumId']);
                 break;
 
             case 0:
