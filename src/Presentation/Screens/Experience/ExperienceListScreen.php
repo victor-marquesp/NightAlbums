@@ -9,38 +9,41 @@ use App\Presentation\Views\FeedbackView;
 use App\Presentation\CLI\Output;
 
 use App\Shared\Results\Success;
+use App\Shared\DTO\ListScreenData;
 
 use App\Navigation\Router;
 use App\Navigation\RouteNames;
 
 class ExperienceListScreen extends Screen {
 
+    private array $experiences;
+
     public function __construct(private ExperienceController $experienceController) {}
 
-    public function run() : void {
+    public function load() : bool {
 
         $result = $this->experienceController->listAll();
 
         if(!$this->handle($result)) {
             Router::goBack();
-            return;
+            return false;
         }
 
-        $option = ExperienceListView::read($result->data);
-        $this->triggerOption($option);
-
+        $this->experiences = $result->data;
+        return true;
     }
 
-    protected function triggerOption(int $option) : void {
+    protected function render(): void {
+        $result = ExperienceListView::read($this->experiences);
+        $this->triggerOption($result);
+    }
 
-        switch($option) {
+    protected function triggerOption(ListScreenData $result) : void {
+
+        switch($result->option) {
 
             case 1:
-                FeedbackView::failure('NÃO IMPLEMENTADO');
-                break;
-
-            case 2:
-                FeedbackView::failure('NÃO IMPLEMENTADO');
+                Router::goTo(RouteNames::EXPERIENCE, $result->id);
                 break;
 
             case 0:
@@ -48,8 +51,9 @@ class ExperienceListScreen extends Screen {
                 break;
 
             default:
-                FeedbackView::failure('Opção inválida');
+                FeedbackView::failure('Opção Inválida');
                 break;
         }
     }
+
 }
