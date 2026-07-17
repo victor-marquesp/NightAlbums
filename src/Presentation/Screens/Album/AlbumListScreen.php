@@ -34,6 +34,8 @@ class AlbumListScreen extends Screen {
 
     public function run() : void {
 
+        parent::run();
+
         $result = AlbumListView::read($this->albums);
         $this->triggerOption($result);
 

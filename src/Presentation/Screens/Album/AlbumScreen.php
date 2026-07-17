@@ -20,8 +20,9 @@ class AlbumScreen extends Screen {
     private Album $album;
 
     public function __construct(
-        private AlbumController $albumController,
-        private int $albumId) {}
+            private AlbumController $albumController,
+            private int $albumId
+        ) {}
 
     public function load() : void {
 
@@ -37,6 +38,8 @@ class AlbumScreen extends Screen {
     }
 
     public function run() : void {
+
+        parent::run();
         
         $option = AlbumView::read($this->album);
         $this->triggerOption($option);

@@ -31,17 +31,16 @@ final class Navigator {
     static public function push(Screen $screen) : void {
 
         if(self::$running) {
-            $screen?->load();
             self::$stack->push($screen);
         }
 
     }
 
-    static public function pop() : void {
+    static public function pop(bool $refresh = false) : void {
 
         if(self::$running) {
             self::$stack->pop();
-            if(!self::$stack->isEmpty()) self::$stack->top()->load();
+            if($refresh) self::$stack->top()?->invalidate();
         }
 
     }
@@ -49,7 +48,6 @@ final class Navigator {
     static public function replace(Screen $screen) : void {
 
         if(self::$running) {
-            $screen?->load();
             self::$stack->pop();
             self::$stack->push($screen);
         }
