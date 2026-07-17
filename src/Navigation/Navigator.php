@@ -36,11 +36,11 @@ final class Navigator {
 
     }
 
-    static public function pop(bool $refresh = false) : void {
+    static public function pop() : void {
 
         if(self::$running) {
             self::$stack->pop();
-            if($refresh) self::$stack->top()?->invalidate();
+            self::$stack->top()?->invalidate();
         }
 
     }

@@ -12,7 +12,7 @@ final class ExperienceFormView {
 
     private function __construct() {}
 
-    static public function read() {
+    static public function readNew() {
         
         Output::clear();
         Output::header('CRIAÇÃO DE EXPERIÊNCIA');
@@ -28,6 +28,37 @@ final class ExperienceFormView {
             desc: $desc 
         );
 
+    }
+
+    static public function readOld(ExperienceFormData $data) {
+        Output::clear();
+        Output::header('CRIAÇÃO DE EXPERIÊNCIA');
+
+        
+        $mood = Input::word(
+            'Se você pudesse descrever esse Álbum em  uma palavra... qual seria [' 
+            . $data->mood .'] -> ',
+            default: $data->mood
+        );
+
+        $stars = Input::decimal(
+            display: 'Quantas estrelas você dá para esse Álbum (0 - 5) -> ['
+            . $data->stars .'] -> ',
+            default: $data->stars,
+        );
+
+        $desc = Input::text(
+            display: 'Descreva sua experiência com esse Álbum (opcional) -> ['
+            . $data->desc .'] -> ',
+            default: $data->desc,
+            hasPassed: true
+        );
+
+        return new ExperienceFormData(
+            mood: $mood,
+            stars: $stars,
+            desc: $desc 
+        );
     }
 
 }

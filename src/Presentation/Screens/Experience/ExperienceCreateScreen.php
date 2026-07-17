@@ -14,7 +14,7 @@ use App\Shared\DTO\NewExperienceData;
 use App\Shared\DTO\ExperienceFormData;
 use App\Shared\Results\Success;
 
-class ExperienceFormScreen extends Screen {
+class ExperienceCreateScreen extends Screen {
 
     public function __construct(
             private ExperienceController $experienceController,
@@ -23,7 +23,7 @@ class ExperienceFormScreen extends Screen {
 
     public function render() : void {
         
-        $form = ExperienceFormView::read();
+        $form = ExperienceFormView::readNew();
         $this->triggerAction($form);
 
     }
@@ -46,7 +46,7 @@ class ExperienceFormScreen extends Screen {
         }
 
         FeedbackView::success('Experiência criada com sucesso');
-        Router::goBack(refresh: true);
+        Router::goBack();
     }
 
 }

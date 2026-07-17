@@ -10,7 +10,8 @@ use App\Presentation\Screens\Album\AlbumListScreen;
 use App\Presentation\Screens\Album\AlbumScreen;
 use App\Presentation\Screens\Experience\ExperienceListScreen;
 use App\Presentation\Screens\Experience\ExperienceScreen;
-use App\Presentation\Screens\Experience\ExperienceFormScreen;
+use App\Presentation\Screens\Experience\ExperienceCreateScreen;
+use App\Presentation\Screens\Experience\ExperienceEditScreen;
 
 use App\Navigation\RouteNames;
 
@@ -30,7 +31,8 @@ final class ScreenFactory {
             RouteNames::ALBUM => new AlbumScreen($this->albumController, ...$params),
             RouteNames::EXPERIENCE_LIST => new ExperienceListScreen($this->experienceController),
             RouteNames::EXPERIENCE => new ExperienceScreen($this->experienceController, ...$params),
-            RouteNames::EXPERIENCE_CREATE => new ExperienceFormScreen($this->experienceController, ...$params),
+            RouteNames::EXPERIENCE_CREATE => new ExperienceCreateScreen($this->experienceController, ...$params),
+            RouteNames::EXPERIENCE_EDIT => new ExperienceEditScreen($this->experienceController, ...$params),
 
         };
 

@@ -37,7 +37,7 @@ final class Router {
 
     }
 
-    static public function goBack(bool $refresh = false) : void {
-        Navigator::pop($refresh);
+    static public function goBack() : void {
+        Navigator::pop();
     }
 }

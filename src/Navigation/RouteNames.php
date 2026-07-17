@@ -8,5 +8,6 @@ enum RouteNames : string {
     case ALBUM = 'album';
     case EXPERIENCE_LIST = 'experiences';
     case EXPERIENCE_CREATE = 'new_experience';
+    case EXPERIENCE_EDIT = 'experience_edit';    
     case EXPERIENCE = 'experience';    
 }

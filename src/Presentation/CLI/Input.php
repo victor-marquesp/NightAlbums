@@ -10,11 +10,16 @@ final class Input {
 
     private function __construct() {}
 
-    static public function number(string $display = '') : int {
+    static public function number(string $display = '', ?int $default = null) : int {
         while (true) {
             $input = trim(readline($display));
 
             if ($input === '') {
+
+                if($default != null) {
+                    return $default;
+                }
+
                 Output::failure('Digite um valor.');
                 continue;
             }
@@ -28,11 +33,16 @@ final class Input {
         }
     }
     
-    static public function decimal(string $display = '') : float {
+    static public function decimal(string $display = '', ?float $default = null) : float {
         while (true) {
             $input = trim(readline($display));
 
             if ($input === '') {
+
+                if($default != null) {
+                    return $default;
+                }
+            
                 Output::failure('Digite um valor.');
                 continue;
             }
@@ -46,11 +56,16 @@ final class Input {
         }
     }
 
-    static public function word(string $display = '') : string {
+    static public function word(string $display = '', ?string $default = null) : string {
         while (true) {
             $input = trim(readline($display));
 
             if ($input === '') {
+
+                if($default != null) {
+                    return $default;
+                }
+
                 Output::failure('Digite um valor.');
                 continue;
             }
@@ -64,8 +79,12 @@ final class Input {
         }
     }
 
-    static public function text(string $display = '') : ?string {
+    static public function text(string $display = '', ?string $default = null, bool $hasPassed = false) : ?string {
         $input = trim(readline($display));
+
+        if($default != null) {
+            return $default;
+        }
 
         return $input === '' ? null : $input;
     }
