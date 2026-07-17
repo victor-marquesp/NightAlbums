@@ -14,14 +14,12 @@ final class Navigator {
     private function __construct() {}
 
     static public function start(Screen $initialScreen) : void {
+        
         self::$stack = new SplStack();
         self::$running = true;
         self::$stack->push($initialScreen);
 
-        while(
-            self::$running &&
-            !self::$stack->isEmpty()
-        ) {
+        while(self::$running && !self::$stack->isEmpty()) {
             
             self::$stack->top()->run();
 
@@ -33,6 +31,7 @@ final class Navigator {
     static public function push(Screen $screen) : void {
 
         if(self::$running) {
+            $screen?->load();
             self::$stack->push($screen);
         }
 
@@ -42,6 +41,7 @@ final class Navigator {
 
         if(self::$running) {
             self::$stack->pop();
+            if(!self::$stack->isEmpty()) self::$stack->top()->load();
         }
 
     }
@@ -49,6 +49,7 @@ final class Navigator {
     static public function replace(Screen $screen) : void {
 
         if(self::$running) {
+            $screen?->load();
             self::$stack->pop();
             self::$stack->push($screen);
         }

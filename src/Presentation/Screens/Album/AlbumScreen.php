@@ -8,6 +8,8 @@ use App\Presentation\Views\Album\AlbumView;
 use App\Presentation\Views\FeedbackView;
 use App\Presentation\CLI\Output;
 
+use App\Domain\Models\Album;
+
 use App\Shared\Results\Success;
 
 use App\Navigation\Router;
@@ -15,18 +17,28 @@ use App\Navigation\RouteNames;
 
 class AlbumScreen extends Screen {
 
-    public function __construct(private AlbumController $albumController) {}
+    private Album $album;
 
-    public function run() : void {
+    public function __construct(
+        private AlbumController $albumController,
+        private int $albumId) {}
 
-        $result = $this->albumController->listById(AlbumView::collectId());
+    public function load() : void {
+
+        $result = $this->albumController->listById($this->albumId);
 
         if(!$this->handle($result)) {
             Router::goBack();
             return;
         }
 
-        $option = AlbumView::read($result->data);
+        $this->album = $result->data;
+
+    }
+
+    public function run() : void {
+        
+        $option = AlbumView::read($this->album);
         $this->triggerOption($option);
 
     }
@@ -49,8 +61,8 @@ class AlbumScreen extends Screen {
 
             default:
                 FeedbackView::failure('Opção Inválida');
-                Router::goBack();
                 break;
         }
     }
+
 }

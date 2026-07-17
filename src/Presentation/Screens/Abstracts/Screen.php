@@ -10,6 +10,8 @@ abstract class Screen implements IScreen {
 
     use HandleFailure;
 
+    public function load() {}
+    
     protected function triggerOption(int $option) : void {}
     
 }

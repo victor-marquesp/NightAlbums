@@ -38,8 +38,4 @@ final class AlbumView {
 
         return Input::number('Digite sua opção -> ');
     }
-
-    static public function collectId() : int {
-        return Input::number('Selecione o Álbum (ID) -> ');
-    }
 }

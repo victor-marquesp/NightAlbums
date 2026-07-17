@@ -12,12 +12,12 @@ final class Router {
 
     private function __construct() {}
 
-    public static function register(RouteNames $route, Screen $screen): void {
-        self::$routes[$route->value] = $screen;
+    public static function register(RouteNames $route, callable $screenFactory) : void {
+        self::$routes[$route->value] = $screenFactory;
     }
 
-    private static function resolve(RouteNames $route): Screen {
-        return self::$routes[$route->value];
+    private static function resolve(RouteNames $route, mixed $args = null) : Screen {
+         return (self::$routes[$route->value])($args);
     }
 
     static public function init(RouteNames $initialRoute) {
@@ -27,21 +27,21 @@ final class Router {
         Navigator::start(self::resolve($initialRoute));
     }
 
-    static public function goTo(RouteNames $route): void {
+    static public function goTo(RouteNames $route, mixed $params = null) : void {
 
         if (!isset(self::$routes[$route->value])) throw new RuntimeException('ROTA NÃO REGISTRADA'); 
 
-        Navigator::push(self::resolve($route));
+        Navigator::push(self::resolve($route, $params));
     }
 
-    static public function switchTo(RouteNames $route): void {
+    static public function switchTo(RouteNames $route, mixed $params = null) : void {
 
         if (!isset(self::$routes[$route->value])) throw new RuntimeException('ROTA NÃO REGISTRADA'); 
     
-        Navigator::replace(self::resolve($route));
+        Navigator::replace(self::resolve($route, $params));
     }
 
-    static public function goBack(): void {
+    static public function goBack() : void {
         Navigator::pop();
     }
 }

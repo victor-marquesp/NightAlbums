@@ -15,9 +15,11 @@ use App\Navigation\RouteNames;
 
 class AlbumListScreen extends Screen {
 
+    private array $albums;
+
     public function __construct(private AlbumController $albumController) {}
 
-    public function run() : void {
+    public function load() : void {
 
         $result = $this->albumController->listAll();
 
@@ -26,7 +28,13 @@ class AlbumListScreen extends Screen {
             return;
         }
 
-        $option = AlbumListView::read($result->data);
+        $this->albums = $result->data;
+
+    }
+
+    public function run() : void {
+
+        $option = AlbumListView::read($this->albums);
         $this->triggerOption($option);
 
     }
@@ -36,7 +44,8 @@ class AlbumListScreen extends Screen {
         switch($option) {
 
             case 1:
-                Router::goTo(RouteNames::ALBUM);
+                $id = AlbumListView::collectId();
+                Router::goTo(RouteNames::ALBUM, $id);
                 break;
 
             case 0:

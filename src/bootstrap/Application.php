@@ -55,21 +55,41 @@ class Application {
         $albumController = new AlbumController($albumService);
 
         // Screens
-        $mainMenuScreen = new MainMenuScreen();
+        // $mainMenuScreen = new MainMenuScreen();
 
-        $albumListScreen = new AlbumListScreen($albumController);
-        $albumScreen = new AlbumScreen($albumController);
+        // $albumListScreen = new AlbumListScreen($albumController);
+        // $albumScreen = new AlbumScreen($albumController);
 
-        $experienceListScreen = new ExperienceListScreen($experienceController);
+        // $experienceListScreen = new ExperienceListScreen($experienceController);
         // $experienceFormScreen = new ExperienceFormScreen();
         // $experienceScreen = new ExperienceScreen();
 
         // Registra as Rotas
 
-        Router::register(route: RouteNames::MAIN_MENU, screen: $mainMenuScreen);
-        Router::register(route: RouteNames::ALBUM_LIST, screen: $albumListScreen);
-        Router::register(route: RouteNames::ALBUM, screen: $albumScreen);
-        Router::register(route: RouteNames::EXPERIENCE_LIST, screen: $experienceListScreen);
+        Router::register(
+            RouteNames::MAIN_MENU,
+            fn () => new MainMenuScreen()
+        );
+
+        Router::register(
+            RouteNames::ALBUM_LIST,
+            fn () => new AlbumListScreen(
+                $albumController
+            )
+        );
+
+        Router::register(
+            RouteNames::ALBUM,
+            fn (int $albumId) => new AlbumScreen(
+                $albumController,
+                $albumId
+            )
+        );
+
+        // Router::register(route: RouteNames::MAIN_MENU, screen: $mainMenuScreen);
+        // Router::register(route: RouteNames::ALBUM_LIST, screen: $albumListScreen);
+        // Router::register(route: RouteNames::ALBUM, screen: $albumScreen);
+        // Router::register(route: RouteNames::EXPERIENCE_LIST, screen: $experienceListScreen);
         // Router::register(route: RouteNames::EXPERIENCE_CREATE, screen: $experienceFormScreen);
         // Router::register(route: RouteNames::EXPERIENCE, screen: $experienceScreen);
 
