@@ -29,6 +29,7 @@ final class ScreenFactory {
             RouteNames::MAIN_MENU => new MainMenuScreen(),
             RouteNames::ALBUM_LIST => new AlbumListScreen($this->albumController),
             RouteNames::ALBUM => new AlbumScreen($this->albumController, ...$params),
+            RouteNames::EXPERIENCE_ALBUM => new ExperienceListScreen($this->experienceController, ...$params),
             RouteNames::EXPERIENCE_LIST => new ExperienceListScreen($this->experienceController),
             RouteNames::EXPERIENCE => new ExperienceScreen($this->experienceController, ...$params),
             RouteNames::EXPERIENCE_CREATE => new ExperienceCreateScreen($this->experienceController, ...$params),

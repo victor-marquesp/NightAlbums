@@ -56,6 +56,19 @@ class ExperienceController {
         }
     }
 
+    public function listByAlbum(int $albumId) : Result {
+        try {
+            $data = $this->expService->listByAlbum($albumId);
+            return new Success(
+                data: $data,
+                message: 'Experiências do Álbum encontradas'
+            );
+
+        } catch(Exception $e) {
+            return new Failure($e->getMessage());
+        }
+    }
+
     public function edit(Experience $experience) : Result {
         try {
             $data = $this->expService->edit($experience);

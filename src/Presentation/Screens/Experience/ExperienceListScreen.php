@@ -19,11 +19,17 @@ class ExperienceListScreen extends Screen {
     private array $experiences;
 
     public function __construct(
-            private ExperienceController $experienceController) {}
+            private ExperienceController $experienceController,
+            private ?int $filterId
+        ) {}
 
     public function load() : bool {
 
-        $result = $this->experienceController->listAll();
+        if($this->filterId != null) {
+            $result = $this->experienceController->listByAlbum($this->filterId);
+        } else {
+            $result = $this->experienceController->listAll();
+        }
 
         if(!$this->handle($result)) {
             Router::goBack();

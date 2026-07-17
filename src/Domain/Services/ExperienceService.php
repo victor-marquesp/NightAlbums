@@ -43,6 +43,14 @@ final class ExperienceService {
         return $this->experienceRep->findById($id);
     }
 
+    public function listByAlbum(int $albumId) {
+
+        $this->listAlbum($albumId);
+
+        return $this->experienceRep->findByAlbum($albumId);
+
+    }   
+
     public function edit(Experience $experience) : Experience {
 
         $this->listAlbum($experience->getAlbum()->getId());

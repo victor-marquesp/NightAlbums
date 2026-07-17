@@ -35,6 +35,17 @@ final class ExperienceMemoryRepository implements IExperienceRepository {
         return MemoryStorage::$experiences[$id];
     }
 
+    public function findByAlbum(int $albumId) {
+        
+        foreach (MemoryStorage::$experiences as $id => $experience) {
+            if($experience->getAlbum()->getId() == $albumId) {
+                $experiences[] = $experience;
+            }
+        }
+
+        return $experiences;
+    }
+
     public function update(Experience $experience) : Experience {
 
         if(!$this->exists($experience->getId())) {
