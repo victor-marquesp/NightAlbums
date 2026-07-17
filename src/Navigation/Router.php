@@ -16,8 +16,8 @@ final class Router {
         self::$routes[$route->value] = $screenFactory;
     }
 
-    private static function resolve(RouteNames $route, mixed $args = null) : Screen {
-         return (self::$routes[$route->value])($args);
+    private static function resolve(RouteNames $route, mixed ...$params) : Screen {
+        return (self::$routes[$route->value])(...$params);
     }
 
     static public function init(RouteNames $initialRoute) {
@@ -27,18 +27,18 @@ final class Router {
         Navigator::start(self::resolve($initialRoute));
     }
 
-    static public function goTo(RouteNames $route, mixed $params = null) : void {
+    static public function goTo(RouteNames $route, mixed ...$params) : void {
 
         if (!isset(self::$routes[$route->value])) throw new RuntimeException('ROTA NÃO REGISTRADA'); 
 
-        Navigator::push(self::resolve($route, $params));
+        Navigator::push(self::resolve($route, ...$params));
     }
 
-    static public function switchTo(RouteNames $route, mixed $params = null) : void {
+    static public function switchTo(RouteNames $route, mixed ...$params) : void {
 
         if (!isset(self::$routes[$route->value])) throw new RuntimeException('ROTA NÃO REGISTRADA'); 
     
-        Navigator::replace(self::resolve($route, $params));
+        Navigator::replace(self::resolve($route, ...$params));
     }
 
     static public function goBack() : void {
