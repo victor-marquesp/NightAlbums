@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\DTO;
+namespace App\Shared\DTO;
 
 class NewAlbumData {
     public function __construct(

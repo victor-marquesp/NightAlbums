@@ -4,7 +4,7 @@ namespace App\Domain\Services;
 
 use App\Domain\Models\Experience;
 use App\Domain\Models\Album;
-use App\Domain\DTO\NewExperienceData;
+use App\Shared\DTO\NewExperienceData;
 use App\Data\Repositories\Contracts\IExperienceRepository;
 use App\Data\Repositories\Contracts\IAlbumRepository;
 

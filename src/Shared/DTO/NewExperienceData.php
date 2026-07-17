@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\DTO;
+namespace App\Shared\DTO;
 
 use App\Domain\Models\Album;
 

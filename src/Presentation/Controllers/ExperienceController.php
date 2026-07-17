@@ -3,7 +3,7 @@
 namespace App\Presentation\Controllers;
 
 use App\Domain\Services\ExperienceService;
-use App\Domain\DTO\NewExperienceData;
+use App\Shared\DTO\NewExperienceData;
 use App\Domain\Models\Experience;
 
 use App\Shared\Results\Result;

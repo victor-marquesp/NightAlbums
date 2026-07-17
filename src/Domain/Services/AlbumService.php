@@ -2,7 +2,7 @@
 
 namespace App\Domain\Services;
 
-use App\Domain\DTO\NewAlbumData;
+use App\Shared\DTO\NewAlbumData;
 use App\Domain\Models\Album;
 
 use App\Data\Repositories\Contracts\IAlbumRepository;

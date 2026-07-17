@@ -3,7 +3,7 @@
 namespace App\Presentation\Controllers;
 
 use App\Domain\Services\AlbumService;
-use App\Domain\DTO\NewAlbumData;
+use App\Shared\DTO\NewAlbumData;
 use App\Domain\Models\Album;
 
 use App\Shared\Results\Result;

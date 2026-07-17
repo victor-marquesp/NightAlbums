@@ -17,8 +17,8 @@ use App\Navigation\ScreenFactory;
 use App\Navigation\RouteNames;
 use App\Navigation\Router;
 
-use App\Domain\DTO\NewAlbumData;
-use App\Domain\DTO\NewExperienceData;
+use App\Shared\DTO\NewAlbumData;
+use App\Shared\DTO\NewExperienceData;
 
 class Application {
 

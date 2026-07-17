@@ -8,18 +8,20 @@ use App\Presentation\CLI\Input;
 
 use App\Domain\Models\Album;
 
+use App\Shared\DTO\ListScreenData;
+
 final class AlbumListView {
 
     private function __construct() {}
 
-    static public function read(array $albums): array {
+    static public function read(array $albums) : ListScreenData {
+        
         Output::clear();
         Output::header('Álbuns Cadastrados');
 
         if (empty($albums)) {
 
             Output::empty('Sem Álbuns Cadastrados');
-
             $menu = [
                 0 => 'Voltar'
             ];
@@ -38,18 +40,17 @@ final class AlbumListView {
         }
 
         Output::separator();
-
         Render::menu($menu);
-
         Output::separator();
 
-        $result['option'] = Input::number('Digite sua opção -> ');
+        $option = Input::number('Digite sua opção -> ');
+        $albumId = 0;
 
-        if ($result['option'] === 1) {
-            $result['albumId'] = Input::number('Selecione o Álbum (ID) -> ');
+        if ($option == 1) {
+            $albumId = Input::number('Selecione o Álbum (ID) -> ');
         }
 
-        return $result;
+        return new ListScreenData(option: $option, id: $albumId);
     }
 
 }

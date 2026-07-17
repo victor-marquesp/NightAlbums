@@ -9,6 +9,7 @@ use App\Presentation\Views\FeedbackView;
 use App\Presentation\CLI\Output;
 
 use App\Shared\Results\Success;
+use App\Shared\DTO\ListScreenData;
 
 use App\Navigation\Router;
 use App\Navigation\RouteNames;
@@ -34,16 +35,15 @@ class AlbumListScreen extends Screen {
 
     protected function render(): void {
         $result = AlbumListView::read($this->albums);
-
         $this->triggerOption($result);
     }
 
-    protected function triggerOption(array $result) : void {
+    protected function triggerOption(ListScreenData $result) : void {
 
-        switch($result['option']){
+        switch($result->option) {
 
             case 1:
-                Router::goTo(RouteNames::ALBUM, $result['albumId']);
+                Router::goTo(RouteNames::ALBUM, $result->id);
                 break;
 
             case 0:
