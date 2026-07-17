@@ -40,7 +40,7 @@ final class Navigator {
 
         if(self::$running) {
             self::$stack->pop();
-            self::$stack->top()?->invalidate();
+            self::$stack->current()?->invalidate();
         }
 
     }
@@ -58,6 +58,15 @@ final class Navigator {
 
         return self::$running;
 
+    }
+
+    private static function current(): ?Screen {
+
+        if (self::$stack->isEmpty()) {
+            return null;
+        }
+
+        return self::$stack->top();
     }
 
 }
