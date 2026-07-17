@@ -13,13 +13,7 @@ use App\Domain\Services\AlbumService;
 use App\Presentation\Controllers\ExperienceController;
 use App\Presentation\Controllers\AlbumController;
 
-use App\Presentation\Screens\MainMenuScreen;
-use App\Presentation\Screens\Album\AlbumListScreen;
-use App\Presentation\Screens\Album\AlbumScreen;
-use App\Presentation\Screens\Experience\ExperienceListScreen;
-// use App\Presentation\Screens\Experience\ExperienceFormScreen;
-// use App\Presentation\Screens\Experience\ExperienceScreen;
-
+use App\Navigation\ScreenFactory;
 use App\Navigation\RouteNames;
 use App\Navigation\Router;
 
@@ -54,44 +48,14 @@ class Application {
         $experienceController = new ExperienceController($experienceService);
         $albumController = new AlbumController($albumService);
 
-        // Screens
-        // $mainMenuScreen = new MainMenuScreen();
+        // Seta o Router
 
-        // $albumListScreen = new AlbumListScreen($albumController);
-        // $albumScreen = new AlbumScreen($albumController);
-
-        // $experienceListScreen = new ExperienceListScreen($experienceController);
-        // $experienceFormScreen = new ExperienceFormScreen();
-        // $experienceScreen = new ExperienceScreen();
-
-        // Registra as Rotas
-
-        Router::register(
-            RouteNames::MAIN_MENU,
-            fn () => new MainMenuScreen()
+        $screenFactory = new ScreenFactory(
+            albumController: $albumController, 
+            experienceController: $experienceController
         );
 
-        Router::register(
-            RouteNames::ALBUM_LIST,
-            fn () => new AlbumListScreen(
-                $albumController
-            )
-        );
-
-        Router::register(
-            RouteNames::ALBUM,
-            fn (int $albumId) => new AlbumScreen(
-                $albumController,
-                $albumId
-            )
-        );
-
-        // Router::register(route: RouteNames::MAIN_MENU, screen: $mainMenuScreen);
-        // Router::register(route: RouteNames::ALBUM_LIST, screen: $albumListScreen);
-        // Router::register(route: RouteNames::ALBUM, screen: $albumScreen);
-        // Router::register(route: RouteNames::EXPERIENCE_LIST, screen: $experienceListScreen);
-        // Router::register(route: RouteNames::EXPERIENCE_CREATE, screen: $experienceFormScreen);
-        // Router::register(route: RouteNames::EXPERIENCE, screen: $experienceScreen);
+        Router::setFactory($screenFactory);
 
         $this->populate($albumService, $experienceService);
 

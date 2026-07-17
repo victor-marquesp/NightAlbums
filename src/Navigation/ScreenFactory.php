@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Navigation;
+
+use App\Presentation\Controllers\AlbumController;
+use App\Presentation\Controllers\ExperienceController;
+
+use App\Presentation\Screens\MainMenuScreen;
+use App\Presentation\Screens\Album\AlbumListScreen;
+use App\Presentation\Screens\Album\AlbumScreen;
+
+use App\Navigation\RouteNames;
+
+final class ScreenFactory {
+
+    public function __construct(
+        private AlbumController $albumController,
+        private ExperienceController $experienceController,
+    ) {}
+
+    public function create(RouteNames $route, mixed...$params) {
+
+        return match($route) {
+
+            RouteNames::MAIN_MENU => new MainMenuScreen(),
+            RouteNames::ALBUM_LIST => new AlbumListScreen($this->albumController),
+            RouteNames::ALBUM => new AlbumScreen($this->albumController, ...$params),
+
+        };
+
+    }
+
+}
