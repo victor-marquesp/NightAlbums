@@ -89,4 +89,23 @@ final class Input {
         return $input === '' ? null : $input;
     }
 
+    static public function confirm(string $display = 'Tem Certeza?') : bool {
+
+        while (true) {
+            $input = trim(readline($display .'(s/n) -> '));
+
+            if ($input === 's') {
+                return true;
+            }  
+
+            if($input === 'n') {
+                return false;
+            }
+
+            Output::failure('Digite uma opção correta.');
+            continue;
+
+        }
+    }
+
 }

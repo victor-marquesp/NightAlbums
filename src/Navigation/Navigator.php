@@ -40,7 +40,7 @@ final class Navigator {
 
         if(self::$running) {
             self::$stack->pop();
-            self::$stack->current()?->invalidate();
+            self::current()?->invalidate();
         }
 
     }

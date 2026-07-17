@@ -44,16 +44,20 @@ class ExperienceScreen extends Screen {
 
     }
 
-    protected function triggerOption(int $option) : void {
+    private function triggerOption(int $option) : void {
 
         switch($option) {
 
             case 1:
-                FeedbackView::failure('NÃO IMPLEMENTADO');
+                Router::goTo(RouteNames::ALBUM, $this->experience->getAlbum()->getId());
                 break;
 
             case 2:
                 Router::goTo(RouteNames::EXPERIENCE_EDIT, $this->experience->getId());
+                break;
+
+            case 3:
+                $this->triggerAction($this->experience->getId());
                 break;
 
             case 0:
@@ -64,6 +68,23 @@ class ExperienceScreen extends Screen {
                 FeedbackView::failure('Opção Inválida');
                 break;
         }
+    }
+
+    private function triggerAction(int $id) : void {
+
+        if(!FeedbackView::confirm('Tem certeza que deseja deletar essa Experiência?')) {
+            return;
+        }
+            
+        $result = $this->experienceController->delete($id);
+
+        if(!$this->handle($result)) {
+            Router::goBack();
+            return;
+        }
+
+        FeedbackView::success('Experiência deletada com sucesso');
+        Router::goBack();
     }
 
 }

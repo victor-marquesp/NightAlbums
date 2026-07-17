@@ -8,7 +8,7 @@ use App\Domain\Models\Experience;
 
 use App\Shared\Results\Result;
 use App\Shared\Results\Success;
-use App\Shared\Results\error;
+use App\Shared\Results\Failure;
 
 use Exception;
 

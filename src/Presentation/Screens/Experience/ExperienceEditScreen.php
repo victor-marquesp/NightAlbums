@@ -63,8 +63,7 @@ class ExperienceEditScreen extends Screen {
         
         $result = $this->experienceController->edit($experienceData);
 
-        if(!$result instanceof Success) {
-            FeedbackView::failure($result->message);
+        if(!$this->handle($result)) {
             Router::goBack();
             return;
         }

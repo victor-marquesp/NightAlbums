@@ -32,7 +32,7 @@ final class ExperienceFormView {
 
     static public function readOld(ExperienceFormData $data) {
         Output::clear();
-        Output::header('CRIAÇÃO DE EXPERIÊNCIA');
+        Output::header('EDIÇÃO DE EXPERIÊNCIA');
 
         
         $mood = Input::word(

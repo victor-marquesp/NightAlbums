@@ -3,6 +3,7 @@
 namespace App\Presentation\Views;
 
 use App\Presentation\CLI\Output;
+use App\Presentation\CLI\Input;
 
 use App\Shared\Results\Success;
 use App\Shared\Results\Failure;
@@ -21,6 +22,10 @@ final class FeedbackView {
         Output::clear();
         Output::failure($message);
         Output::pause();
+    }
+
+    static public function confirm(?string $display = null) : bool {
+        return Input::confirm($display);
     }
 
     static public function exit() {

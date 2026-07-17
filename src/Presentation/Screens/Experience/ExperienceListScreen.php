@@ -18,7 +18,8 @@ class ExperienceListScreen extends Screen {
 
     private array $experiences;
 
-    public function __construct(private ExperienceController $experienceController) {}
+    public function __construct(
+            private ExperienceController $experienceController) {}
 
     public function load() : bool {
 
