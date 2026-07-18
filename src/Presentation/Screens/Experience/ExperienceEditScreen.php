@@ -68,7 +68,7 @@ class ExperienceEditScreen extends Screen {
             return;
         }
 
-        FeedbackView::success('Experiência editada com sucesso');
+        FeedbackView::success('Experiência atualizada');
         Router::goBack();
     }
 

@@ -11,8 +11,8 @@ final class MainMenuView {
     private function __construct() {}
 
     static public function read() : int {
-        Output::clear();
-        Output::header('NIGHTALBUMS');
+
+        Output::title();
         Render::menu([
             1 => 'Álbuns',
             2 => 'Minhas Experiências',
@@ -20,7 +20,7 @@ final class MainMenuView {
         ]);
         Output::separator();
 
-        return Input::number('Digite sua opção -> ');
+        return Input::number('> ');
     }
 
 }

@@ -16,12 +16,12 @@ final class AlbumListView {
 
     static public function read(array $albums) : ListScreenData {
         
-        Output::clear();
-        Output::header('Álbuns Cadastrados');
+        Output::title();
+        Output::header('Álbuns');
 
         if (empty($albums)) {
 
-            Output::empty('Sem Álbuns Cadastrados');
+            Output::empty('Sem Álbuns');
             $menu = [
                 0 => 'Voltar'
             ];
@@ -34,7 +34,7 @@ final class AlbumListView {
             );
 
             $menu = [
-                1 => 'Visualizar Álbum',
+                1 => 'Ver Álbum',
                 0 => 'Voltar'
             ];
         }
@@ -43,11 +43,11 @@ final class AlbumListView {
         Render::menu($menu);
         Output::separator();
 
-        $option = Input::number('Digite sua opção -> ');
+        $option = Input::number('> ');
         $albumId = 0;
 
         if ($option == 1) {
-            $albumId = Input::number('Selecione o Álbum (ID) -> ');
+            $albumId = Input::number('Selecione o Álbum (ID) > ');
         }
 
         return new ListScreenData(option: $option, id: $albumId);

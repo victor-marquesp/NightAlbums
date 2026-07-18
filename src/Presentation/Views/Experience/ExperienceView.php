@@ -14,15 +14,15 @@ final class ExperienceView {
 
     static public function read(Experience $experience) : int {
 
-        Output::clear();
-        Output::header('Visualização de Experiência');
+        Output::title();
+        Output::header('Experiência');
 
         Render::entity([
-            'ID' => $experience->getId(),
-            'Álbum' => $experience->getAlbum()->getName(),
-            'Mood' => $experience->getMood(),
-            'Estrelas' => $experience->getStars(),
-            'Descrição' => $experience->getDesc(),
+            'ID          ' => $experience->getId(),
+            'Álbum       ' => $experience->getAlbum()->getName(),
+            'Mood        ' => $experience->getMood(),
+            'Estrelas    ' => $experience->getStars(),
+            'Descrição   ' => $experience->getDesc(),
         ]);
         Output::separator();
 
@@ -33,6 +33,6 @@ final class ExperienceView {
             0 => 'Voltar'
         ]); 
 
-        return Input::number('Digite sua opção -> ');
+        return Input::number('> ');
     }
 }

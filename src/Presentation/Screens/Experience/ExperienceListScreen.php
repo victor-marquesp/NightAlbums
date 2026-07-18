@@ -20,7 +20,7 @@ class ExperienceListScreen extends Screen {
 
     public function __construct(
             private ExperienceController $experienceController,
-            private ?int $filterId
+            private ?int $filterId = null
         ) {}
 
     public function load() : bool {

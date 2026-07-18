@@ -45,7 +45,7 @@ class ExperienceCreateScreen extends Screen {
             return;
         }
 
-        FeedbackView::success('Experiência criada com sucesso');
+        FeedbackView::success('Experiência criada');
         Router::goBack();
     }
 

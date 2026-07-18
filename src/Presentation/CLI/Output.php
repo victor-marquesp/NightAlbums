@@ -7,45 +7,50 @@ final class Output {
     private function __construct() {}
 
     static public function separator() {
-        echo "-------------------------------------------------------\n";
+        echo "──────────────────────────────────────────────────────\n";
     }
 
-    static public function title(string $title) : void {
-        echo "=======================================================\n";
-        echo "\t $title\n";
-        echo "=======================================================\n";
+    static public function title(
+            string $title = 'NightAlbums',
+            string $subtitle = 'your personal album journal'
+        ) : void {
+
+        self::clear();
+        self::separator();
+        echo "                ☾ $title\n";
+        echo "          $subtitle\n";
+        self::separator();
+        echo "\n";
     }
 
     static public function header(string $header) : void {
-        echo "=======================================================\n";
-        echo "\t $header\n";
-        echo "=======================================================\n";
+        echo "● {$header}\n";
+        echo "──────────────────────────────────────────────────────\n";
     }
 
     static public function goodbye() : void {
-        echo "=======================================================\n";
-        echo "    ADEUS, OBRIGADO POR UTILIZAR\n";
-        echo "=======================================================\n";
+        echo "\n";
+        echo "☾ Até a próxima.\n";
+        echo "Obrigado por registrar suas noites musicais.\n\n";
     }
 
     static public function success(string $message) : void {
-        echo "=======================================================\n";
-        echo "SUCESSO: $message\n";
-        echo "=======================================================\n";
+        echo "\n";
+        echo "✓ {$message}\n\n";
     }
 
     static public function failure(string $message) : void {
-        echo "=======================================================\n";
-        echo "ERRO: $message\n";
-        echo "=======================================================\n";
+        echo "\n";
+        echo "✗ {$message}\n\n";
     }
 
     static public function empty($message) : void {
-        echo "VAZIO: $message\n";
+        echo "\n";
+        echo "○ 🕳️ Oops... {$message}\n\n";
     }
 
     static public function pause() : void {
-        readline("DIGITE QUALQUER TECLA PARA CONTINUAR... \t\t\t");
+        readline("Pressione Enter para continuar...");
     }
 
     static public function clear() : void {

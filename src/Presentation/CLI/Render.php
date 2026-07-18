@@ -9,16 +9,16 @@ final class Render {
 
     private function construct() {}
 
-    static public function menu(array $options) {
+    static public function menu(array $options) : void {
 
-        foreach($options as $number => $text) {
-            echo "($number) - { $text } \n";
+        foreach ($options as $number => $text) {
+            echo " {$number}. {$text}\n";
         }
+        echo "\n";
 
     }
 
-    public static function list(array $items, callable $formatter): void
-    {
+    public static function list(array $items, callable $formatter) : void {
 
         foreach ($items as $id => $item) {
             self::listItem($id, $item, $formatter);
@@ -28,14 +28,17 @@ final class Render {
 
     static public function listItem(int $id, mixed $item, callable $formatter) : void {
 
-        echo "[$id] - " . $formatter($item) . "\n";
+        echo str_pad($id,3,"0",STR_PAD_LEFT);
+        echo " │ ";
+        echo $formatter($item);
+        echo "\n";
         
     }
 
-    static public function entity(array $fields) {
+    static public function entity(array $fields) : void {
         
         foreach($fields as $field => $value) {
-            echo "[$field]: " .($value ?? 'Sem Valor')  ."\n";
+            echo "$field" .($value ?? "-") ."\n";
         }
 
     }

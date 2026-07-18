@@ -29,9 +29,7 @@ final class FeedbackView {
     }
 
     static public function exit() {
-        Output::clear();
         Output::goodbye();
-        Output::pause();
     }
 
 }

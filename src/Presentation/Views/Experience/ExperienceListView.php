@@ -16,12 +16,12 @@ final class ExperienceListView {
 
     static public function read(array $experiences) : ListScreenData {
         
-        Output::clear();
-        Output::header('Experiências Cadastradas');
+        Output::title();
+        Output::header('Suas Experiências');
 
         if (empty($experiences)) {
 
-            Output::empty('Sem Experiências Cadastrados');
+            Output::empty('Sem Experiências');
             $menu = [
                 0 => 'Voltar'
             ];
@@ -33,13 +33,13 @@ final class ExperienceListView {
                 fn (Experience $e) =>
                     $e->getAlbum()->getName()
                     . ' | '
-                    . substr($e->getDesc() ?? 'Sem Descrição', 0, 20)
+                    . substr($e->getDesc() ?? '-', 0, 20)
                     . ' | '
                     . $e->getMood()
             );
 
             $menu = [
-                1 => 'Visualizar Experiência',
+                1 => 'Ver Experiência',
                 0 => 'Voltar'
             ];
         }
@@ -48,11 +48,11 @@ final class ExperienceListView {
         Render::menu($menu);
         Output::separator();
 
-        $option = Input::number('Digite sua opção -> ');
+        $option = Input::number('> ');
         $experienceId = 0;
 
         if ($option == 1) {
-            $experienceId = Input::number('Selecione a Experiência (ID) -> ');
+            $experienceId = Input::number('Selecione a Experiência (ID) > ');
         }
 
         return new ListScreenData(option: $option, id: $experienceId);

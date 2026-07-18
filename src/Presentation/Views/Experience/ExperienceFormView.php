@@ -14,13 +14,13 @@ final class ExperienceFormView {
 
     static public function readNew() {
         
-        Output::clear();
-        Output::header('CRIAÇÃO DE EXPERIÊNCIA');
+        Output::title();
+        Output::header('Nova Experiência');
 
         
-        $mood = Input::word('Se você pudesse descrever esse Álbum em  uma palavra... qual seria -> ');
-        $stars = Input::decimal('Quantas estrelas você dá para esse Álbum (0 - 5) -> ');
-        $desc = Input::text('Descreva sua experiência com esse Álbum (opcional) -> ');
+        $mood = Input::word('Se você pudesse descrever esse Álbum em  uma palavra... qual seria > ');
+        $stars = Input::decimal('Quantas estrelas você dá para esse Álbum (0 - 5) > ');
+        $desc = Input::text('Descreva sua experiência com esse Álbum (opcional) > ');
 
         return new ExperienceFormData(
             mood: $mood,
@@ -31,25 +31,26 @@ final class ExperienceFormView {
     }
 
     static public function readOld(ExperienceFormData $data) {
-        Output::clear();
-        Output::header('EDIÇÃO DE EXPERIÊNCIA');
+        
+        Output::title();
+        Output::header('Editar');
 
         
         $mood = Input::word(
-            'Se você pudesse descrever esse Álbum em  uma palavra... qual seria [' 
-            . $data->mood .'] -> ',
+            'Se você pudesse descrever esse Álbum em  uma palavra... qual seria(' 
+            . $data->mood .') > ',
             default: $data->mood
         );
 
         $stars = Input::decimal(
-            display: 'Quantas estrelas você dá para esse Álbum (0 - 5) -> ['
-            . $data->stars .'] -> ',
+            display: 'Quantas estrelas você dá para esse Álbum (0 - 5) ('
+            . $data->stars .') > ',
             default: $data->stars,
         );
 
         $desc = Input::text(
-            display: 'Descreva sua experiência com esse Álbum (opcional) -> ['
-            . $data->desc .'] -> ',
+            display: 'Descreva sua experiência com esse Álbum (opcional) ('
+            . $data->desc .') > ',
             default: $data->desc,
             hasPassed: true
         );

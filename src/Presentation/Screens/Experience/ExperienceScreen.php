@@ -72,7 +72,7 @@ class ExperienceScreen extends Screen {
 
     private function triggerAction(int $id) : void {
 
-        if(!FeedbackView::confirm('Tem certeza que deseja deletar essa Experiência?')) {
+        if(!FeedbackView::confirm('Confirmar deleção?')) {
             return;
         }
             
@@ -83,7 +83,7 @@ class ExperienceScreen extends Screen {
             return;
         }
 
-        FeedbackView::success('Experiência deletada com sucesso');
+        FeedbackView::success('Experiência deletada');
         Router::goBack();
     }
 

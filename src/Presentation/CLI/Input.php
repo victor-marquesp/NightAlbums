@@ -92,7 +92,7 @@ final class Input {
     static public function confirm(string $display = 'Tem Certeza?') : bool {
 
         while (true) {
-            $input = trim(readline($display .'(s/n) -> '));
+            $input = trim(readline($display .'(s/n) > '));
 
             if ($input === 's') {
                 return true;

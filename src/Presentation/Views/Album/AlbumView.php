@@ -15,27 +15,27 @@ final class AlbumView {
     static public function read(Album $album) : int {
 
         Output::clear();
-        Output::header('Visualização de Álbum');
+        Output::header('Álbum');
 
         Render::entity([
-            'ID' => $album->getId(),
-            'Nome' => $album->getName(),
-            'Duração' => $album->getDuration(),
-            'Descrição' => $album->getDesc(),
-            'Artista' => $album->getArtist(),
-            'Gênero' => $album->getGenre(),
+            'ID          ' => $album->getId(),
+            'Nome        ' => $album->getName(),
+            'Duração     ' => $album->getDuration(),
+            'Descrição   ' => $album->getDesc(),
+            'Artista     ' => $album->getArtist(),
+            'Gênero      ' => $album->getGenre(),
 
         ]);
 
         Output::separator();
 
         Render::menu([
-            1 => 'Listar Experiências do Álbum',
-            2 => 'Registrar Nova Experiência',
+            1 => 'Listar Experiências',
+            2 => 'Nova Experiência',
             0 => 'Voltar'
         ]); 
         
 
-        return Input::number('Digite sua opção -> ');
+        return Input::number('> ');
     }
 }
